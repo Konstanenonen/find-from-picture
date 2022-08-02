@@ -1,0 +1,18 @@
+// Colors
+$color-red: rgb(255, 215, 163);
+$color-blue: rgb(19, 169, 174);
+$color-darkblue: rgb(103, 99, 174);
+$color-lavender: rgb(202, 196, 255);
+
+// Helper classes
+@mixin flex-column {
+  display: flex;
+  flex-direction: column;
+}
+
+// Media queries
+@mixin desktop {
+  @media only screen and (min-width: 992px) {
+    @content;
+  }
+}
