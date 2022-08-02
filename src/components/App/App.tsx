@@ -1,7 +1,8 @@
 import React from 'react';
+import styles from './App.module.scss';
 
 function App() {
-  return <div className="App">This is App</div>;
+  return <div className={styles.container}>This is App</div>;
 }
 
 export default App;
