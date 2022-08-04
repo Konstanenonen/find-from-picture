@@ -12,17 +12,17 @@ function Canvas() {
   const [menuY, setMenuY] = useState(0);
 
   function handleClick(e: any) {
-    const x = Number(e.clientX);
-    const y = Number(e.clientY);
-    setMenuX(x - 40);
-    setMenuY(y - 40);
+    const x = Number(e.clientX - 40);
+    const y = Number(e.clientY - 40);
+    setMenuY(y);
+    setMenuX(x);
     setMenuOpen((m) => !m);
   }
 
   return (
     <div onClick={handleClick} className={styles.container}>
       <img src={waldo} alt="Where is waldo" className={styles.img} />
-      <CorrectLocation top={215} left={515} />
+      <CorrectLocation top={220} left={695} />
       {menuOpen && <TargetingMenu top={menuY} left={menuX} />}
     </div>
   );
