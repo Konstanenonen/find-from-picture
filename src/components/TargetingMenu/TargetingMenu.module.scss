@@ -1,0 +1,19 @@
+@use '../../variables.scss' as vars;
+
+.container {
+  display: flex;
+  height: 75px;
+}
+
+.box {
+  border: 5px solid green;
+  width: 75px;
+}
+
+.buttons {
+  @include vars.flex-column;
+}
+
+.button {
+  flex: 1;
+}
