@@ -1,9 +1,14 @@
 import React from 'react';
 import styles from './TargetingMenu.module.scss';
 
-function TargetingMenu() {
+interface TargetingMenuProps {
+  top: number;
+  left: number;
+}
+
+function TargetingMenu({ top, left }: TargetingMenuProps) {
   return (
-    <div className={styles.container}>
+    <div className={styles.container} style={{ top, left }}>
       <div className={styles.box} />
       <div className={styles.buttons}>
         <button type="button" className={styles.button}>
