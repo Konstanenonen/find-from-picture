@@ -10,7 +10,8 @@ function Canvas() {
   const [menuOpen, setMenuOpen] = useState(false);
   const [menuX, setMenuX] = useState(0);
   const [menuY, setMenuY] = useState(0);
-  const [correctLocation, setCorrectLocation] = useState(false);
+  const [waldoLocation, setWaldoLocation] = useState(false);
+  const [wizardLocation, setWizardLocation] = useState(false);
 
   function handleClick(e: any) {
     const x = Number(e.clientX - 40);
@@ -23,14 +24,16 @@ function Canvas() {
   return (
     <div onClick={handleClick} className={styles.container}>
       <img src={waldo} alt="Where is waldo" className={styles.img} />
-      {correctLocation && <CorrectLocation top={220} left={695} />}
       {menuOpen && (
         <TargetingMenu
-          handleClick={() => setCorrectLocation((c) => !c)}
+          handleWaldo={() => setWaldoLocation((c) => !c)}
+          handleWizard={() => setWizardLocation((w) => !w)}
           top={menuY}
           left={menuX}
         />
       )}
+      {waldoLocation && <CorrectLocation top={220} left={695} />}
+      {wizardLocation && <CorrectLocation top={220} left={825} />}
     </div>
   );
 }
