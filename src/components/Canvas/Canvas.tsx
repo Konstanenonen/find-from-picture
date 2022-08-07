@@ -10,6 +10,7 @@ function Canvas() {
   const [menuOpen, setMenuOpen] = useState(false);
   const [menuX, setMenuX] = useState(0);
   const [menuY, setMenuY] = useState(0);
+  const [correctLocation, setCorrectLocation] = useState(false);
 
   function handleClick(e: any) {
     const x = Number(e.clientX - 40);
@@ -22,8 +23,14 @@ function Canvas() {
   return (
     <div onClick={handleClick} className={styles.container}>
       <img src={waldo} alt="Where is waldo" className={styles.img} />
-      <CorrectLocation top={220} left={695} />
-      {menuOpen && <TargetingMenu top={menuY} left={menuX} />}
+      {correctLocation && <CorrectLocation top={220} left={695} />}
+      {menuOpen && (
+        <TargetingMenu
+          handleClick={() => setCorrectLocation((c) => !c)}
+          top={menuY}
+          left={menuX}
+        />
+      )}
     </div>
   );
 }
