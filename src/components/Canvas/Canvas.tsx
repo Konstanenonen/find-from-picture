@@ -14,8 +14,8 @@ function Canvas() {
   const [wizardLocation, setWizardLocation] = useState(false);
 
   function handleClick(e: any) {
-    const x = Number(e.clientX - 40);
-    const y = Number(e.clientY - 40);
+    const x = Number(e.pageX - 40);
+    const y = Number(e.pageY - 40);
     setMenuY(y);
     setMenuX(x);
     setMenuOpen((m) => !m);
