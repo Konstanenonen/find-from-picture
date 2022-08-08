@@ -6,12 +6,14 @@ interface TargetingMenuProps {
   left: number;
   handleWaldo: () => void;
   handleWizard: () => void;
+  handleOdlaw: () => void;
 }
 
 function TargetingMenu({
   top,
   left,
   handleWaldo,
+  handleOdlaw,
   handleWizard,
 }: TargetingMenuProps) {
   return (
@@ -21,8 +23,8 @@ function TargetingMenu({
         <button type="button" className={styles.button} onClick={handleWaldo}>
           Waldo
         </button>
-        <button type="button" className={styles.button}>
-          Wilma
+        <button type="button" className={styles.button} onClick={handleOdlaw}>
+          Odlaw
         </button>
         <button type="button" className={styles.button} onClick={handleWizard}>
           Wizard

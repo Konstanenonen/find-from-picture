@@ -12,6 +12,7 @@ function Canvas() {
   const [menuY, setMenuY] = useState(0);
   const [waldoLocation, setWaldoLocation] = useState(false);
   const [wizardLocation, setWizardLocation] = useState(false);
+  const [odlawLocation, setOdlawLocation] = useState(false);
 
   function handleClick(e: any) {
     const x = Number(e.pageX - 40);
@@ -27,6 +28,7 @@ function Canvas() {
       {menuOpen && (
         <TargetingMenu
           handleWaldo={() => setWaldoLocation((c) => !c)}
+          handleOdlaw={() => setOdlawLocation((o) => !o)}
           handleWizard={() => setWizardLocation((w) => !w)}
           top={menuY}
           left={menuX}
@@ -34,6 +36,7 @@ function Canvas() {
       )}
       {waldoLocation && <CorrectLocation top="37%" left="51%" />}
       {wizardLocation && <CorrectLocation top="37%" left="64%" />}
+      {odlawLocation && <CorrectLocation top="38%" left="14%" />}
     </div>
   );
 }
