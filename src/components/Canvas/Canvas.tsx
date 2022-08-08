@@ -32,8 +32,8 @@ function Canvas() {
           left={menuX}
         />
       )}
-      {waldoLocation && <CorrectLocation top={220} left={695} />}
-      {wizardLocation && <CorrectLocation top={220} left={825} />}
+      {waldoLocation && <CorrectLocation top="37%" left="51%" />}
+      {wizardLocation && <CorrectLocation top="37%" left="64%" />}
     </div>
   );
 }
