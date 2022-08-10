@@ -4,17 +4,23 @@ import { getFirestore } from 'firebase/firestore';
 import Canvas from '../Canvas/Canvas';
 import styles from './App.module.scss';
 
-const app = initializeApp({
-  // FILL THIS
-});
+const firebaseConfig = {
+  apiKey: 'AIzaSyBguB1cnwI-okJrHcYqGZnypeV7eLqBeuw',
+  authDomain: 'find-from-picture.firebaseapp.com',
+  projectId: 'find-from-picture',
+  storageBucket: 'find-from-picture.appspot.com',
+  messagingSenderId: '613746067832',
+  appId: '1:613746067832:web:ace715b8496fa02d54e08d',
+};
 
-// eslint-disable-next-line no-unused-vars
-const db = getFirestore(app);
+const firebaseApp = initializeApp(firebaseConfig);
+
+const firestore = getFirestore(firebaseApp);
 
 function App() {
   return (
     <div className={styles.container}>
-      <Canvas />
+      <Canvas firestore={firestore} />
     </div>
   );
 }
