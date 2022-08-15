@@ -18,7 +18,7 @@ interface Coordinates {
 
 interface CorrectLocations {
   waldo: Coordinates;
-  ozwald: Coordinates;
+  odlaw: Coordinates;
   wizard: Coordinates;
 }
 
@@ -29,8 +29,11 @@ function Canvas({ firestore }: CanvasProps) {
   const [waldoLocation, setWaldoLocation] = useState(false);
   const [wizardLocation, setWizardLocation] = useState(false);
   const [odlawLocation, setOdlawLocation] = useState(false);
-  const [correctLocations, setCorrectLocations] =
-    useState<CorrectLocations | null>(null);
+  const [correctLocations, setCorrectLocations] = useState<CorrectLocations>({
+    waldo: { x: 0, y: 0 },
+    odlaw: { x: 0, y: 0 },
+    wizard: { x: 0, y: 0 },
+  });
 
   function handleClick(e: any) {
     console.log(e.pageX, e.pageY);
@@ -54,14 +57,48 @@ function Canvas({ firestore }: CanvasProps) {
     getCorrectLocations();
   }, []);
 
+  function checkIfCorrectLocation(
+    correctLocation: Coordinates,
+    clickLocation: Coordinates,
+    handleCorrect: () => void
+  ) {
+    const differenceX = correctLocation.x - clickLocation.x;
+    const differenceY = correctLocation.y - clickLocation.y;
+
+    console.log(differenceX, differenceY);
+
+    if (differenceX > 50 || differenceX < -50) return;
+    if (differenceY > 50 || differenceY < -50) return;
+
+    handleCorrect();
+  }
+
   return (
     <div onClick={handleClick} className={styles.container}>
       <img src={waldo} alt="Where is waldo" className={styles.img} />
       {menuOpen && (
         <TargetingMenu
-          handleWaldo={() => setWaldoLocation((c) => !c)}
-          handleOdlaw={() => setOdlawLocation((o) => !o)}
-          handleWizard={() => setWizardLocation((w) => !w)}
+          handleWaldo={() =>
+            checkIfCorrectLocation(
+              correctLocations.waldo,
+              { x: menuX, y: menuY },
+              () => setWaldoLocation(true)
+            )
+          }
+          handleOdlaw={() =>
+            checkIfCorrectLocation(
+              correctLocations.odlaw,
+              { x: menuX, y: menuY },
+              () => setOdlawLocation(true)
+            )
+          }
+          handleWizard={() =>
+            checkIfCorrectLocation(
+              correctLocations.wizard,
+              { x: menuX, y: menuY },
+              () => setWizardLocation(true)
+            )
+          }
           top={menuY}
           left={menuX}
         />

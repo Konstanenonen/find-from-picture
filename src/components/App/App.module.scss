@@ -1,6 +1,5 @@
 @use '../../variables.scss' as vars;
 
 .container {
-  @include vars.flex-column;
-  align-items: center;
+  padding: 0 100px;
 }
