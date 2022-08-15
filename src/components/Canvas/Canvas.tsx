@@ -36,7 +36,7 @@ function Canvas({ firestore }: CanvasProps) {
   });
 
   function handleClick(e: any) {
-    console.log(e.pageX, e.pageY);
+    console.log(e.pageX - 40, e.pageY - 40);
     const x = Number(e.pageX - 40);
     const y = Number(e.pageY - 40);
     setMenuY(y);

@@ -3,6 +3,7 @@ import { initializeApp } from 'firebase/app';
 import { getFirestore } from 'firebase/firestore';
 import Canvas from '../Canvas/Canvas';
 import styles from './App.module.scss';
+import Navbar from '../Navbar/Navbar';
 
 const firebaseConfig = {
   apiKey: 'AIzaSyBguB1cnwI-okJrHcYqGZnypeV7eLqBeuw',
@@ -20,6 +21,7 @@ const firestore = getFirestore(firebaseApp);
 function App() {
   return (
     <div className={styles.container}>
+      <Navbar />
       <Canvas firestore={firestore} />
     </div>
   );
