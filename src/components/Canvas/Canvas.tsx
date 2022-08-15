@@ -36,7 +36,6 @@ function Canvas({ firestore }: CanvasProps) {
   });
 
   function handleClick(e: any) {
-    console.log(e.pageX - 40, e.pageY - 40);
     const x = Number(e.pageX - 40);
     const y = Number(e.pageY - 40);
     setMenuY(y);
@@ -64,8 +63,6 @@ function Canvas({ firestore }: CanvasProps) {
   ) {
     const differenceX = correctLocation.x - clickLocation.x;
     const differenceY = correctLocation.y - clickLocation.y;
-
-    console.log(differenceX, differenceY);
 
     if (differenceX > 50 || differenceX < -50) return;
     if (differenceY > 50 || differenceY < -50) return;
