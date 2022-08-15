@@ -103,10 +103,24 @@ function Canvas({ firestore }: CanvasProps) {
           left={menuX}
         />
       )}
-      {waldoLocation && <CorrectLocation top="37%" left="51%" />}
-      {wizardLocation && <CorrectLocation top="37%" left="64%" />}
-      {odlawLocation && <CorrectLocation top="38%" left="14%" />}
-      <p>{correctLocations?.waldo.x}</p>
+      {waldoLocation && (
+        <CorrectLocation
+          top={correctLocations.waldo.y}
+          left={correctLocations.waldo.x}
+        />
+      )}
+      {wizardLocation && (
+        <CorrectLocation
+          top={correctLocations.wizard.y}
+          left={correctLocations.wizard.x}
+        />
+      )}
+      {odlawLocation && (
+        <CorrectLocation
+          top={correctLocations.odlaw.y}
+          left={correctLocations.odlaw.x}
+        />
+      )}
     </div>
   );
 }

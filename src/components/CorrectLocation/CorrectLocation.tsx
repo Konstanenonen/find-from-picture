@@ -4,8 +4,8 @@ import React from 'react';
 import styles from './CorrectLocation.module.scss';
 
 interface CorrectLocationLocationProps {
-  top: string;
-  left: string;
+  top: number;
+  left: number;
 }
 
 function CorrectLocation({ top, left }: CorrectLocationLocationProps) {
