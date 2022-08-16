@@ -1,7 +1,7 @@
 /* eslint-disable jsx-a11y/no-static-element-interactions */
 /* eslint-disable jsx-a11y/click-events-have-key-events */
 import { doc, Firestore, getDoc } from 'firebase/firestore';
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import waldo from '../../images/waldo.jpg';
 import CorrectLocation from '../CorrectLocation/CorrectLocation';
 import Navbar from '../Navbar/Navbar';
@@ -25,6 +25,7 @@ interface CorrectLocations {
 }
 
 function Canvas({ firestore }: CanvasProps) {
+  const imageEl = useRef<any>(null);
   const [menuOpen, setMenuOpen] = useState(false);
   const [menuX, setMenuX] = useState(0);
   const [menuY, setMenuY] = useState(0);
@@ -42,6 +43,7 @@ function Canvas({ firestore }: CanvasProps) {
   function handleClick(e: any) {
     const x = Number(e.pageX - 40);
     const y = Number(e.pageY - 40);
+    console.log(x, y);
     setMenuY(y);
     setMenuX(x);
     setMenuOpen((m) => !m);
@@ -53,7 +55,17 @@ function Canvas({ firestore }: CanvasProps) {
       const docSnap = await getDoc(docRef);
 
       if (docSnap.exists()) {
+        const imageOffset = imageEl.current.getBoundingClientRect();
+        console.log(imageOffset);
         const locationData = docSnap.data() as CorrectLocations;
+
+        locationData.odlaw.x += imageOffset.x;
+        locationData.odlaw.y += imageOffset.y;
+        locationData.waldo.x += imageOffset.x;
+        locationData.waldo.y += imageOffset.y;
+        locationData.wizard.x += imageOffset.x;
+        locationData.wizard.y += imageOffset.y;
+
         setCorrectLocations(locationData);
       }
     }
@@ -68,6 +80,8 @@ function Canvas({ firestore }: CanvasProps) {
     const differenceX = correctLocation.x - clickLocation.x;
     const differenceY = correctLocation.y - clickLocation.y;
 
+    console.log(differenceX, differenceY);
+
     if (differenceX > 50 || differenceX < -50) return;
     if (differenceY > 50 || differenceY < -50) return;
 
@@ -81,7 +95,12 @@ function Canvas({ firestore }: CanvasProps) {
         <Timer gameOver={gameOver} />
       </Navbar>
       <div onClick={handleClick} className={styles.container}>
-        <img src={waldo} alt="Where is waldo" className={styles.img} />
+        <img
+          ref={imageEl}
+          src={waldo}
+          alt="Where is waldo"
+          className={styles.img}
+        />
         {menuOpen && (
           <TargetingMenu
             handleWaldo={() =>

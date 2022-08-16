@@ -1,12 +1,14 @@
 @use '../../variables.scss' as vars;
 
 .container {
+  @include vars.flex-column;
+  align-items: center;
+  justify-content: center;
 }
 
 .img {
   width: 1000px;
   height: auto;
-  margin-left: 100px;
 }
 
 .text {
