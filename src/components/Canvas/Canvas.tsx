@@ -5,6 +5,7 @@ import React, { useEffect, useState } from 'react';
 import waldo from '../../images/waldo.jpg';
 import CorrectLocation from '../CorrectLocation/CorrectLocation';
 import TargetingMenu from '../TargetingMenu/TargetingMenu';
+import Timer from '../Timer/Timer';
 import styles from './Canvas.module.scss';
 
 interface CanvasProps {
@@ -34,6 +35,9 @@ function Canvas({ firestore }: CanvasProps) {
     odlaw: { x: 0, y: 0 },
     wizard: { x: 0, y: 0 },
   });
+
+  const gameOver = waldoLocation && wizardLocation && odlawLocation;
+  console.log(gameOver);
 
   function handleClick(e: any) {
     const x = Number(e.pageX - 40);
@@ -118,6 +122,7 @@ function Canvas({ firestore }: CanvasProps) {
           left={correctLocations.odlaw.x}
         />
       )}
+      <Timer gameOver={gameOver} />
     </div>
   );
 }
