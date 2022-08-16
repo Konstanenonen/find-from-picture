@@ -77,7 +77,7 @@ function Canvas({ firestore }: CanvasProps) {
   return (
     <>
       <Navbar>
-        <h1>Find From Picture</h1>
+        <h1 className={styles.text}>Find From Picture</h1>
         <Timer gameOver={gameOver} />
       </Navbar>
       <div onClick={handleClick} className={styles.container}>

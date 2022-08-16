@@ -3,6 +3,7 @@
 .container {
   height: 150px;
   display: flex;
-  padding: 20px;
-  justify-content: space-between;
+  align-items: center;
+  gap: 250px;
+  padding-left: 100px;
 }
