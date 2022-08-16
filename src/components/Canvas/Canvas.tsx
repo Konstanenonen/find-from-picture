@@ -4,6 +4,7 @@ import { doc, Firestore, getDoc } from 'firebase/firestore';
 import React, { useEffect, useState } from 'react';
 import waldo from '../../images/waldo.jpg';
 import CorrectLocation from '../CorrectLocation/CorrectLocation';
+import Navbar from '../Navbar/Navbar';
 import TargetingMenu from '../TargetingMenu/TargetingMenu';
 import Timer from '../Timer/Timer';
 import styles from './Canvas.module.scss';
@@ -37,7 +38,6 @@ function Canvas({ firestore }: CanvasProps) {
   });
 
   const gameOver = waldoLocation && wizardLocation && odlawLocation;
-  console.log(gameOver);
 
   function handleClick(e: any) {
     const x = Number(e.pageX - 40);
@@ -75,55 +75,60 @@ function Canvas({ firestore }: CanvasProps) {
   }
 
   return (
-    <div onClick={handleClick} className={styles.container}>
-      <img src={waldo} alt="Where is waldo" className={styles.img} />
-      {menuOpen && (
-        <TargetingMenu
-          handleWaldo={() =>
-            checkIfCorrectLocation(
-              correctLocations.waldo,
-              { x: menuX, y: menuY },
-              () => setWaldoLocation(true)
-            )
-          }
-          handleOdlaw={() =>
-            checkIfCorrectLocation(
-              correctLocations.odlaw,
-              { x: menuX, y: menuY },
-              () => setOdlawLocation(true)
-            )
-          }
-          handleWizard={() =>
-            checkIfCorrectLocation(
-              correctLocations.wizard,
-              { x: menuX, y: menuY },
-              () => setWizardLocation(true)
-            )
-          }
-          top={menuY}
-          left={menuX}
-        />
-      )}
-      {waldoLocation && (
-        <CorrectLocation
-          top={correctLocations.waldo.y}
-          left={correctLocations.waldo.x}
-        />
-      )}
-      {wizardLocation && (
-        <CorrectLocation
-          top={correctLocations.wizard.y}
-          left={correctLocations.wizard.x}
-        />
-      )}
-      {odlawLocation && (
-        <CorrectLocation
-          top={correctLocations.odlaw.y}
-          left={correctLocations.odlaw.x}
-        />
-      )}
-      <Timer gameOver={gameOver} />
-    </div>
+    <>
+      <Navbar>
+        <h1>Find From Picture</h1>
+        <Timer gameOver={gameOver} />
+      </Navbar>
+      <div onClick={handleClick} className={styles.container}>
+        <img src={waldo} alt="Where is waldo" className={styles.img} />
+        {menuOpen && (
+          <TargetingMenu
+            handleWaldo={() =>
+              checkIfCorrectLocation(
+                correctLocations.waldo,
+                { x: menuX, y: menuY },
+                () => setWaldoLocation(true)
+              )
+            }
+            handleOdlaw={() =>
+              checkIfCorrectLocation(
+                correctLocations.odlaw,
+                { x: menuX, y: menuY },
+                () => setOdlawLocation(true)
+              )
+            }
+            handleWizard={() =>
+              checkIfCorrectLocation(
+                correctLocations.wizard,
+                { x: menuX, y: menuY },
+                () => setWizardLocation(true)
+              )
+            }
+            top={menuY}
+            left={menuX}
+          />
+        )}
+        {waldoLocation && (
+          <CorrectLocation
+            top={correctLocations.waldo.y}
+            left={correctLocations.waldo.x}
+          />
+        )}
+        {wizardLocation && (
+          <CorrectLocation
+            top={correctLocations.wizard.y}
+            left={correctLocations.wizard.x}
+          />
+        )}
+        {odlawLocation && (
+          <CorrectLocation
+            top={correctLocations.odlaw.y}
+            left={correctLocations.odlaw.x}
+          />
+        )}
+      </div>
+    </>
   );
 }
 

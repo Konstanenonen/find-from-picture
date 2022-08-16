@@ -1,12 +1,12 @@
 import React from 'react';
 import styles from './Navbar.module.scss';
 
-function Navbar() {
-  return (
-    <nav className={styles.container}>
-      <h1>This is nav</h1>
-    </nav>
-  );
+interface NavbarProps {
+  children: React.ReactNode;
+}
+
+function Navbar({ children }: NavbarProps) {
+  return <nav className={styles.container}>{children}</nav>;
 }
 
 export default Navbar;

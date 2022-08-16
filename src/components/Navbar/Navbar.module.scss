@@ -2,4 +2,7 @@
 
 .container {
   height: 150px;
+  display: flex;
+  padding: 20px;
+  justify-content: space-between;
 }
