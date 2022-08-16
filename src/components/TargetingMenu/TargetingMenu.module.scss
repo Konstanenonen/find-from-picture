@@ -1,7 +1,7 @@
 @use '../../variables.scss' as vars;
 
 .container {
-  position: fixed;
+  position: absolute;
   display: flex;
   height: 75px;
 }
