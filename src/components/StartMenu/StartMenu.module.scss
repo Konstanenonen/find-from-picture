@@ -1,0 +1,30 @@
+@use '../../variables.scss' as vars;
+
+.container {
+  padding: 50px;
+  @include vars.flex-column;
+  align-items: center;
+  gap: 50px;
+}
+
+.title {
+  font-size: 2rem;
+}
+
+.imageContainer {
+  @include vars.flex-column;
+}
+
+.image {
+  width: 200px;
+  height: 400px;
+}
+
+.characterText {
+  font-size: 1.5rem;
+  text-align: center;
+}
+
+.characters {
+  display: flex;
+}
