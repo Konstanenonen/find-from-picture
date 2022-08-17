@@ -23,7 +23,7 @@ function App() {
   return (
     <div className={styles.container}>
       {start ? (
-        <Canvas firestore={firestore} />
+        <Canvas firestore={firestore} end={() => setStart(false)} />
       ) : (
         <StartMenu start={() => setStart(true)} />
       )}
