@@ -11,7 +11,6 @@ import styles from './Canvas.module.scss';
 
 interface CanvasProps {
   firestore: Firestore;
-  end: () => void;
 }
 
 interface Coordinates {
@@ -25,7 +24,7 @@ interface CorrectLocations {
   wizard: Coordinates;
 }
 
-function Canvas({ firestore, end }: CanvasProps) {
+function Canvas({ firestore }: CanvasProps) {
   const imageEl = useRef<any>(null);
   const [menuOpen, setMenuOpen] = useState(false);
   const [menuX, setMenuX] = useState(0);
@@ -89,9 +88,6 @@ function Canvas({ firestore, end }: CanvasProps) {
     <>
       <Navbar>
         <h1 className={styles.text}>Find From Picture</h1>
-        <button type="button" onClick={end}>
-          Back to menu
-        </button>
         <Timer gameOver={gameOver} />
       </Navbar>
       <div onClick={handleClick} className={styles.container}>
