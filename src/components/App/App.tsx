@@ -1,8 +1,9 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { initializeApp } from 'firebase/app';
 import { getFirestore } from 'firebase/firestore';
 import Canvas from '../Canvas/Canvas';
 import styles from './App.module.scss';
+import StartMenu from '../StartMenu/StartMenu';
 
 const firebaseConfig = {
   apiKey: 'AIzaSyBguB1cnwI-okJrHcYqGZnypeV7eLqBeuw',
@@ -18,9 +19,14 @@ const firebaseApp = initializeApp(firebaseConfig);
 const firestore = getFirestore(firebaseApp);
 
 function App() {
+  const [start, setStart] = useState(false);
   return (
     <div className={styles.container}>
-      <Canvas firestore={firestore} />
+      {start ? (
+        <Canvas firestore={firestore} />
+      ) : (
+        <StartMenu start={() => setStart(true)} />
+      )}
     </div>
   );
 }
