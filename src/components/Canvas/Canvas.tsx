@@ -3,7 +3,7 @@
 import { doc, Firestore, getDoc } from 'firebase/firestore';
 import React, { useEffect, useRef, useState } from 'react';
 import waldo from '../../images/waldo.jpg';
-import CorrectLocation from '../CorrectLocation/CorrectLocation';
+import CorrectLocationGroup from '../CorrectLocationGroup/CorrectLocationGroup';
 import Navbar from '../Navbar/Navbar';
 import TargetingMenu from '../TargetingMenu/TargetingMenu';
 import Timer from '../Timer/Timer';
@@ -43,7 +43,6 @@ function Canvas({ firestore }: CanvasProps) {
   function handleClick(e: any) {
     const x = Number(e.pageX - 40);
     const y = Number(e.pageY - 40);
-    console.log(x, y);
     setMenuY(y);
     setMenuX(x);
     setMenuOpen((m) => !m);
@@ -56,7 +55,6 @@ function Canvas({ firestore }: CanvasProps) {
 
       if (docSnap.exists()) {
         const imageOffset = imageEl.current.getBoundingClientRect();
-        console.log(imageOffset);
         const locationData = docSnap.data() as CorrectLocations;
 
         locationData.odlaw.x += imageOffset.x;
@@ -79,8 +77,6 @@ function Canvas({ firestore }: CanvasProps) {
   ) {
     const differenceX = correctLocation.x - clickLocation.x;
     const differenceY = correctLocation.y - clickLocation.y;
-
-    console.log(differenceX, differenceY);
 
     if (differenceX > 50 || differenceX < -50) return;
     if (differenceY > 50 || differenceY < -50) return;
@@ -128,24 +124,12 @@ function Canvas({ firestore }: CanvasProps) {
             left={menuX}
           />
         )}
-        {waldoLocation && (
-          <CorrectLocation
-            top={correctLocations.waldo.y}
-            left={correctLocations.waldo.x}
-          />
-        )}
-        {wizardLocation && (
-          <CorrectLocation
-            top={correctLocations.wizard.y}
-            left={correctLocations.wizard.x}
-          />
-        )}
-        {odlawLocation && (
-          <CorrectLocation
-            top={correctLocations.odlaw.y}
-            left={correctLocations.odlaw.x}
-          />
-        )}
+        <CorrectLocationGroup
+          waldoLocation={waldoLocation}
+          wizardLocation={wizardLocation}
+          odlawLocation={odlawLocation}
+          correctLocations={correctLocations}
+        />
       </div>
     </>
   );
