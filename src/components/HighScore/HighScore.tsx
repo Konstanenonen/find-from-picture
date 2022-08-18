@@ -36,6 +36,8 @@ function HighScore({ firestore, gameOver, userTime }: HighScoreProps) {
       name: newBestName,
       time: userTime,
     });
+
+    window.location.reload();
   }
 
   const newBestTime = userTime < bestTime?.time && gameOver;
