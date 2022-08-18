@@ -4,6 +4,7 @@ import { doc, Firestore, getDoc } from 'firebase/firestore';
 import React, { useEffect, useRef, useState } from 'react';
 import waldo from '../../images/waldo.jpg';
 import CorrectLocationGroup from '../CorrectLocationGroup/CorrectLocationGroup';
+import HighScore from '../HighScore/HighScore';
 import Navbar from '../Navbar/Navbar';
 import TargetingMenu from '../TargetingMenu/TargetingMenu';
 import Timer from '../Timer/Timer';
@@ -88,7 +89,10 @@ function Canvas({ firestore }: CanvasProps) {
     <>
       <Navbar>
         <h1 className={styles.text}>Find From Picture</h1>
-        <Timer gameOver={gameOver} />
+        <div>
+          <HighScore firestore={firestore} />
+          <Timer gameOver={gameOver} />
+        </div>
       </Navbar>
       <div onClick={handleClick} className={styles.container}>
         <img
