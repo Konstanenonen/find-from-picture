@@ -1,5 +1,6 @@
 import { doc, Firestore, getDoc, setDoc } from 'firebase/firestore';
 import React, { useEffect, useState } from 'react';
+import styles from './HighScore.module.scss';
 
 interface BestTime {
   name: string;
@@ -47,7 +48,7 @@ function HighScore({ firestore, gameOver, userTime }: HighScoreProps) {
       <p>High score</p>
       <p>{bestTime ? `${bestTime.name}: ${bestTime.time}` : 'LOADING...'}</p>
       {newBestTime && (
-        <form onSubmit={updateBestTime}>
+        <form onSubmit={updateBestTime} className={styles.container}>
           <h3>You beat the old best time!</h3>
           <label htmlFor="time">
             New best time:
