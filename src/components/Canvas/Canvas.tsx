@@ -38,6 +38,7 @@ function Canvas({ firestore }: CanvasProps) {
     odlaw: { x: 0, y: 0 },
     wizard: { x: 0, y: 0 },
   });
+  const [userTime, setUserTime] = useState(0);
 
   const gameOver = waldoLocation && wizardLocation && odlawLocation;
 
@@ -90,8 +91,16 @@ function Canvas({ firestore }: CanvasProps) {
       <Navbar>
         <h1 className={styles.text}>Find From Picture</h1>
         <div>
-          <HighScore firestore={firestore} />
-          <Timer gameOver={gameOver} />
+          <HighScore
+            firestore={firestore}
+            gameOver={gameOver}
+            userTime={userTime}
+          />
+          <Timer
+            gameOver={gameOver}
+            userTime={userTime}
+            setUserTime={() => setUserTime((s) => s + 1)}
+          />
         </div>
       </Navbar>
       <div onClick={handleClick} className={styles.container}>

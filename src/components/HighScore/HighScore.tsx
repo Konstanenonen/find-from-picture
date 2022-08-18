@@ -8,10 +8,13 @@ interface BestTime {
 
 interface HighScoreProps {
   firestore: Firestore;
+  gameOver: boolean;
+  userTime: number;
 }
 
-function HighScore({ firestore }: HighScoreProps) {
+function HighScore({ firestore, gameOver, userTime }: HighScoreProps) {
   const [bestTime, setBestTime] = useState<any>(null);
+
   useEffect(() => {
     async function getCorrectLocations() {
       const docRef = doc(firestore, 'high-score', 'bestTime');
@@ -24,10 +27,26 @@ function HighScore({ firestore }: HighScoreProps) {
     }
     getCorrectLocations();
   }, []);
+
+  const newBestTime = userTime < bestTime?.time && gameOver;
+
   return (
     <div>
       <p>High score</p>
       <p>{bestTime ? `${bestTime.name}: ${bestTime.time}` : 'LOADING...'}</p>
+      {newBestTime && (
+        <form>
+          <h3>New fastest time!</h3>
+          <label htmlFor="name">
+            Name:
+            <input id="name" type="text" />
+          </label>
+          <label htmlFor="time">
+            Time:
+            <input id="time" type="number" />
+          </label>
+        </form>
+      )}
     </div>
   );
 }
