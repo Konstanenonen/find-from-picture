@@ -1,4 +1,4 @@
-import { doc, Firestore, getDoc } from 'firebase/firestore';
+import { doc, Firestore, getDoc, setDoc } from 'firebase/firestore';
 import React, { useEffect, useState } from 'react';
 
 interface BestTime {
@@ -14,6 +14,7 @@ interface HighScoreProps {
 
 function HighScore({ firestore, gameOver, userTime }: HighScoreProps) {
   const [bestTime, setBestTime] = useState<any>(null);
+  const [newBestName, setNewBestName] = useState('');
 
   useEffect(() => {
     async function getCorrectLocations() {
@@ -28,6 +29,15 @@ function HighScore({ firestore, gameOver, userTime }: HighScoreProps) {
     getCorrectLocations();
   }, []);
 
+  async function updateBestTime(e: any) {
+    e.preventDefault();
+
+    await setDoc(doc(firestore, 'high-score', 'bestTime'), {
+      name: newBestName,
+      time: userTime,
+    });
+  }
+
   const newBestTime = userTime < bestTime?.time && gameOver;
 
   return (
@@ -35,16 +45,22 @@ function HighScore({ firestore, gameOver, userTime }: HighScoreProps) {
       <p>High score</p>
       <p>{bestTime ? `${bestTime.name}: ${bestTime.time}` : 'LOADING...'}</p>
       {newBestTime && (
-        <form>
-          <h3>New fastest time!</h3>
+        <form onSubmit={updateBestTime}>
+          <h3>You beat the old best time!</h3>
+          <label htmlFor="time">
+            New best time:
+            <input value={userTime} id="time" type="number" />
+          </label>
           <label htmlFor="name">
             Name:
-            <input id="name" type="text" />
+            <input
+              value={newBestName}
+              onChange={(e: any) => setNewBestName(e.target.value)}
+              id="name"
+              type="text"
+            />
           </label>
-          <label htmlFor="time">
-            Time:
-            <input id="time" type="number" />
-          </label>
+          <button type="submit">SAVE</button>
         </form>
       )}
     </div>
