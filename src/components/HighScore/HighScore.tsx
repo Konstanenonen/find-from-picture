@@ -41,31 +41,39 @@ function HighScore({ firestore, gameOver, userTime }: HighScoreProps) {
     window.location.reload();
   }
 
-  const newBestTime = userTime < bestTime?.time && gameOver;
+  const newBestTime = userTime < bestTime?.time;
 
   return (
     <div>
       <p>High score</p>
       <p>{bestTime ? `${bestTime.name}: ${bestTime.time}` : 'LOADING...'}</p>
-      {newBestTime && (
-        <form onSubmit={updateBestTime} className={styles.container}>
-          <h3>You beat the old best time!</h3>
-          <label htmlFor="time">
-            New best time:
-            <input value={userTime} id="time" type="number" />
-          </label>
-          <label htmlFor="name">
-            Name:
-            <input
-              value={newBestName}
-              onChange={(e: any) => setNewBestName(e.target.value)}
-              id="name"
-              type="text"
-            />
-          </label>
-          <button type="submit">SAVE</button>
-        </form>
-      )}
+      {gameOver &&
+        (newBestTime ? (
+          <form onSubmit={updateBestTime} className={styles.container}>
+            <h3>You beat the old best time!</h3>
+            <label htmlFor="time">
+              New best time:
+              <input value={userTime} id="time" type="number" />
+            </label>
+            <label htmlFor="name">
+              Name:
+              <input
+                value={newBestName}
+                onChange={(e: any) => setNewBestName(e.target.value)}
+                id="name"
+                type="text"
+              />
+            </label>
+            <button type="submit">SAVE</button>
+          </form>
+        ) : (
+          <div>
+            <p>No new best time this time!</p>
+            <button type="button" onClick={() => window.location.reload()}>
+              PLAY AGAIN
+            </button>
+          </div>
+        ))}
     </div>
   );
 }
