@@ -67,7 +67,7 @@ function HighScore({ firestore, gameOver, userTime }: HighScoreProps) {
             <button type="submit">SAVE</button>
           </form>
         ) : (
-          <div>
+          <div className={styles.container}>
             <p>No new best time this time!</p>
             <button type="button" onClick={() => window.location.reload()}>
               PLAY AGAIN
