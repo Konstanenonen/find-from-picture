@@ -50,11 +50,8 @@ function HighScore({ firestore, gameOver, userTime }: HighScoreProps) {
       {gameOver &&
         (newBestTime ? (
           <form onSubmit={updateBestTime} className={styles.container}>
-            <h3>You beat the old best time!</h3>
-            <label htmlFor="time">
-              New best time:
-              <input value={userTime} id="time" type="number" />
-            </label>
+            <h3>New fastest time!</h3>
+            <p>New fastest time: {userTime}</p>
             <label htmlFor="name">
               Name:
               <input
@@ -68,7 +65,8 @@ function HighScore({ firestore, gameOver, userTime }: HighScoreProps) {
           </form>
         ) : (
           <div className={styles.container}>
-            <p>No new best time this time!</p>
+            <p>Best time: {bestTime.time}</p>
+            <p>Your time: {userTime}</p>
             <button type="button" onClick={() => window.location.reload()}>
               PLAY AGAIN
             </button>
