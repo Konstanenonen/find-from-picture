@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { ReactNode, useState } from 'react';
 import { initializeApp } from 'firebase/app';
 import { getFirestore } from 'firebase/firestore';
 import Canvas from '../Canvas/Canvas';
@@ -20,15 +20,13 @@ const firestore = getFirestore(firebaseApp);
 
 function App() {
   const [start, setStart] = useState(false);
-  return (
-    <div className={styles.container}>
-      {start ? (
-        <Canvas firestore={firestore} />
-      ) : (
-        <StartMenu start={() => setStart(true)} />
-      )}
-    </div>
-  );
+  let appState: ReactNode = <Canvas firestore={firestore} />;
+
+  if (!start) {
+    appState = <StartMenu start={() => setStart(true)} />;
+  }
+
+  return <div className={styles.container}>{appState}</div>;
 }
 
 export default App;
