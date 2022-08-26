@@ -1,6 +1,6 @@
-import { doc, Firestore, getDoc, setDoc } from 'firebase/firestore';
+import { doc, Firestore, getDoc } from 'firebase/firestore';
 import React, { useEffect, useState } from 'react';
-import styles from './HighScore.module.scss';
+// import styles from './HighScore.module.scss';
 
 interface BestTime {
   name: string;
@@ -9,13 +9,10 @@ interface BestTime {
 
 interface HighScoreProps {
   firestore: Firestore;
-  gameOver: boolean;
-  userTime: number;
 }
 
-function HighScore({ firestore, gameOver, userTime }: HighScoreProps) {
+function HighScore({ firestore }: HighScoreProps) {
   const [bestTime, setBestTime] = useState<any>(null);
-  const [newBestName, setNewBestName] = useState('');
 
   useEffect(() => {
     async function getCorrectLocations() {
@@ -30,48 +27,10 @@ function HighScore({ firestore, gameOver, userTime }: HighScoreProps) {
     getCorrectLocations();
   }, []);
 
-  async function updateBestTime(e: any) {
-    e.preventDefault();
-
-    await setDoc(doc(firestore, 'high-score', 'bestTime'), {
-      name: newBestName,
-      time: userTime,
-    });
-
-    window.location.reload();
-  }
-
-  const newBestTime = userTime < bestTime?.time;
-
   return (
     <div>
       <p>High score</p>
       <p>{bestTime ? `${bestTime.name}: ${bestTime.time}` : 'LOADING...'}</p>
-      {gameOver &&
-        (newBestTime ? (
-          <form onSubmit={updateBestTime} className={styles.container}>
-            <h3>New fastest time!</h3>
-            <p>New fastest time: {userTime}</p>
-            <label htmlFor="name">
-              Name:
-              <input
-                value={newBestName}
-                onChange={(e: any) => setNewBestName(e.target.value)}
-                id="name"
-                type="text"
-              />
-            </label>
-            <button type="submit">SAVE</button>
-          </form>
-        ) : (
-          <div className={styles.container}>
-            <p>Best time: {bestTime.time}</p>
-            <p>Your time: {userTime}</p>
-            <button type="button" onClick={() => window.location.reload()}>
-              PLAY AGAIN
-            </button>
-          </div>
-        ))}
     </div>
   );
 }

@@ -4,14 +4,21 @@ import { doc, Firestore, getDoc } from 'firebase/firestore';
 import React, { useEffect, useRef, useState } from 'react';
 import waldo from '../../images/waldo.jpg';
 import CorrectLocationGroup from '../CorrectLocationGroup/CorrectLocationGroup';
+import EndPopup from '../EndPopup/EndPopup';
 import HighScore from '../HighScore/HighScore';
 import Navbar from '../Navbar/Navbar';
 import TargetingMenu from '../TargetingMenu/TargetingMenu';
 import Timer from '../Timer/Timer';
 import styles from './Canvas.module.scss';
 
+interface BestTime {
+  name: string;
+  time: number;
+}
+
 interface CanvasProps {
   firestore: Firestore;
+  bestTime: BestTime;
 }
 
 interface Coordinates {
@@ -25,7 +32,7 @@ interface CorrectLocations {
   wizard: Coordinates;
 }
 
-function Canvas({ firestore }: CanvasProps) {
+function Canvas({ firestore, bestTime }: CanvasProps) {
   const imageEl = useRef<any>(null);
   const [menuOpen, setMenuOpen] = useState(false);
   const [menuX, setMenuX] = useState(0);
@@ -88,14 +95,17 @@ function Canvas({ firestore }: CanvasProps) {
 
   return (
     <>
+      {gameOver && (
+        <EndPopup
+          userTime={userTime}
+          bestTime={bestTime}
+          firestore={firestore}
+        />
+      )}
       <Navbar>
         <h1 className={styles.text}>Find From Picture</h1>
         <div>
-          <HighScore
-            firestore={firestore}
-            gameOver={gameOver}
-            userTime={userTime}
-          />
+          <HighScore firestore={firestore} />
           <Timer
             gameOver={gameOver}
             userTime={userTime}
