@@ -1,5 +1,4 @@
-import { doc, Firestore, getDoc } from 'firebase/firestore';
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 // import styles from './HighScore.module.scss';
 
 interface BestTime {
@@ -8,29 +7,16 @@ interface BestTime {
 }
 
 interface HighScoreProps {
-  firestore: Firestore;
+  bestTime: BestTime;
 }
 
-function HighScore({ firestore }: HighScoreProps) {
-  const [bestTime, setBestTime] = useState<any>(null);
-
-  useEffect(() => {
-    async function getCorrectLocations() {
-      const docRef = doc(firestore, 'high-score', 'bestTime');
-      const docSnap = await getDoc(docRef);
-
-      if (docSnap.exists()) {
-        const firestoreBestTime = docSnap.data() as BestTime;
-        setBestTime(firestoreBestTime);
-      }
-    }
-    getCorrectLocations();
-  }, []);
-
+function HighScore({ bestTime }: HighScoreProps) {
   return (
     <div>
       <p>High score</p>
-      <p>{bestTime ? `${bestTime.name}: ${bestTime.time}` : 'LOADING...'}</p>
+      <p>
+        {bestTime.name}: {bestTime.time}
+      </p>
     </div>
   );
 }
