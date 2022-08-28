@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import React from 'react';
 import styles from './TargetingMenu.module.scss';
 
@@ -21,6 +22,7 @@ interface TargetingMenuProps {
   setWizardTrue: () => void;
   menuX: number;
   menuY: number;
+  setWrongLocationSelected: (bool: boolean) => void;
 }
 
 function TargetingMenu({
@@ -32,6 +34,7 @@ function TargetingMenu({
   setWizardTrue,
   menuX,
   menuY,
+  setWrongLocationSelected,
 }: TargetingMenuProps) {
   function checkIfCorrectLocation(
     correctLocation: Coordinates,
@@ -41,10 +44,18 @@ function TargetingMenu({
     const differenceX = correctLocation.x - clickLocation.x;
     const differenceY = correctLocation.y - clickLocation.y;
 
-    if (differenceX > 50 || differenceX < -50) return;
-    if (differenceY > 50 || differenceY < -50) return;
+    if (
+      differenceX > 50 ||
+      differenceY > 50 ||
+      differenceX < -50 ||
+      differenceY < -50
+    ) {
+      setWrongLocationSelected(true);
+      return;
+    }
 
     handleCorrect();
+    setWrongLocationSelected(false);
   }
 
   return (

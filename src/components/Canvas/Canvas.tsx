@@ -9,6 +9,7 @@ import HighScore from '../HighScore/HighScore';
 import Navbar from '../Navbar/Navbar';
 import TargetingMenu from '../TargetingMenu/TargetingMenu';
 import Timer from '../Timer/Timer';
+import WrongSelectionPopup from '../WrongSelectionPopup/WrongSelectionPopup';
 import styles from './Canvas.module.scss';
 
 interface BestTime {
@@ -46,6 +47,7 @@ function Canvas({ firestore, bestTime }: CanvasProps) {
     wizard: { x: 0, y: 0 },
   });
   const [userTime, setUserTime] = useState(0);
+  const [wrongLocationSelected, setWrongLocationSelected] = useState(false);
 
   const gameOver = waldoLocation && wizardLocation && odlawLocation;
 
@@ -109,6 +111,7 @@ function Canvas({ firestore, bestTime }: CanvasProps) {
             setWizardTrue={() => setWizardLocation(true)}
             menuX={menuX}
             menuY={menuY}
+            setWrongLocationSelected={setWrongLocationSelected}
           />
         )}
         <CorrectLocationGroup
@@ -118,6 +121,7 @@ function Canvas({ firestore, bestTime }: CanvasProps) {
           correctLocations={correctLocations}
         />
       </div>
+      {wrongLocationSelected && <WrongSelectionPopup />}
       {gameOver && (
         <EndPopup
           userTime={userTime}
