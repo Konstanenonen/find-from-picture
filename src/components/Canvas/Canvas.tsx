@@ -20,6 +20,7 @@ interface BestTime {
 interface CanvasProps {
   firestore: Firestore;
   bestTime: BestTime;
+  playAgain: () => void;
 }
 
 interface Coordinates {
@@ -33,7 +34,7 @@ interface CorrectLocations {
   wizard: Coordinates;
 }
 
-function Canvas({ firestore, bestTime }: CanvasProps) {
+function Canvas({ firestore, bestTime, playAgain }: CanvasProps) {
   const imageEl = useRef<any>(null);
   const [menuOpen, setMenuOpen] = useState(false);
   const [menuX, setMenuX] = useState(0);
@@ -127,6 +128,7 @@ function Canvas({ firestore, bestTime }: CanvasProps) {
           userTime={userTime}
           bestTime={bestTime}
           firestore={firestore}
+          playAgain={playAgain}
         />
       )}
     </>

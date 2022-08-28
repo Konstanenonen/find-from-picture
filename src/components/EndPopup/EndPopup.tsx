@@ -11,9 +11,10 @@ interface EndPopupProps {
   userTime: number;
   bestTime: BestTime;
   firestore: Firestore;
+  playAgain: () => void;
 }
 
-function EndPopup({ userTime, bestTime, firestore }: EndPopupProps) {
+function EndPopup({ userTime, bestTime, firestore, playAgain }: EndPopupProps) {
   const [newBestName, setNewBestName] = useState('');
 
   async function updateBestTime(e: any) {
@@ -24,7 +25,7 @@ function EndPopup({ userTime, bestTime, firestore }: EndPopupProps) {
       time: userTime,
     });
 
-    window.location.reload();
+    playAgain();
   }
 
   const newBestTime = userTime < bestTime?.time;
@@ -50,7 +51,7 @@ function EndPopup({ userTime, bestTime, firestore }: EndPopupProps) {
         <div className={styles.container}>
           <p>Best time: {bestTime.time}</p>
           <p>Your time: {userTime}</p>
-          <button type="button" onClick={() => window.location.reload()}>
+          <button type="button" onClick={() => playAgain()}>
             PLAY AGAIN
           </button>
         </div>

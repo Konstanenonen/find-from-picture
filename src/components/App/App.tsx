@@ -38,10 +38,14 @@ function App() {
       }
     }
     getCorrectLocations();
-  }, []);
+  });
 
   let appState: ReactNode = (
-    <Canvas firestore={firestore} bestTime={bestTime} />
+    <Canvas
+      firestore={firestore}
+      bestTime={bestTime}
+      playAgain={() => setStart(false)}
+    />
   );
 
   if (!start) {
