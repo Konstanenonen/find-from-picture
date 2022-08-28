@@ -79,29 +79,8 @@ function Canvas({ firestore, bestTime }: CanvasProps) {
     getCorrectLocations();
   }, []);
 
-  function checkIfCorrectLocation(
-    correctLocation: Coordinates,
-    clickLocation: Coordinates,
-    handleCorrect: () => void
-  ) {
-    const differenceX = correctLocation.x - clickLocation.x;
-    const differenceY = correctLocation.y - clickLocation.y;
-
-    if (differenceX > 50 || differenceX < -50) return;
-    if (differenceY > 50 || differenceY < -50) return;
-
-    handleCorrect();
-  }
-
   return (
     <>
-      {gameOver && (
-        <EndPopup
-          userTime={userTime}
-          bestTime={bestTime}
-          firestore={firestore}
-        />
-      )}
       <Navbar>
         <h1 className={styles.text}>Find From Picture</h1>
         <div>
@@ -122,29 +101,14 @@ function Canvas({ firestore, bestTime }: CanvasProps) {
         />
         {menuOpen && (
           <TargetingMenu
-            handleWaldo={() =>
-              checkIfCorrectLocation(
-                correctLocations.waldo,
-                { x: menuX, y: menuY },
-                () => setWaldoLocation(true)
-              )
-            }
-            handleOdlaw={() =>
-              checkIfCorrectLocation(
-                correctLocations.odlaw,
-                { x: menuX, y: menuY },
-                () => setOdlawLocation(true)
-              )
-            }
-            handleWizard={() =>
-              checkIfCorrectLocation(
-                correctLocations.wizard,
-                { x: menuX, y: menuY },
-                () => setWizardLocation(true)
-              )
-            }
             top={menuY}
             left={menuX}
+            correctLocations={correctLocations}
+            setWaldoTrue={() => setWaldoLocation(true)}
+            setOdlawTrue={() => setOdlawLocation(true)}
+            setWizardTrue={() => setWizardLocation(true)}
+            menuX={menuX}
+            menuY={menuY}
           />
         )}
         <CorrectLocationGroup
@@ -154,6 +118,13 @@ function Canvas({ firestore, bestTime }: CanvasProps) {
           correctLocations={correctLocations}
         />
       </div>
+      {gameOver && (
+        <EndPopup
+          userTime={userTime}
+          bestTime={bestTime}
+          firestore={firestore}
+        />
+      )}
     </>
   );
 }
