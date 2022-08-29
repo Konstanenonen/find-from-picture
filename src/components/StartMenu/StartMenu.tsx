@@ -3,6 +3,7 @@ import waldo from '../../images/waldo-character.png';
 import odlaw from '../../images/odlaw.jpg';
 import wizard from '../../images/wizard.png';
 import styles from './StartMenu.module.scss';
+import Navbar from '../Navbar/Navbar';
 
 interface StartMenuProps {
   start: () => void;
@@ -11,8 +12,10 @@ interface StartMenuProps {
 function StartMenu({ start }: StartMenuProps) {
   return (
     <div className={styles.container}>
-      <h1 className={styles.title}>Find From Picture</h1>
-      <p>Find these characters as fast as possible from the picture</p>
+      <Navbar>
+        <h1 className={styles.title}>Find From Picture</h1>
+        <p>Find these characters as fast as possible from the picture</p>
+      </Navbar>
       <div className={styles.characters}>
         <div className={styles.imageContainer}>
           <img className={styles.image} src={waldo} alt="Happy Waldo" />

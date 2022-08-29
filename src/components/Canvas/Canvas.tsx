@@ -49,7 +49,6 @@ function Canvas({ firestore, bestTime, playAgain }: CanvasProps) {
   });
   const [userTime, setUserTime] = useState(0);
   const [wrongLocationSelected, setWrongLocationSelected] = useState(false);
-
   const gameOver = waldoLocation && wizardLocation && odlawLocation;
 
   function handleClick(e: any) {

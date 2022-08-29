@@ -86,7 +86,7 @@ audio,
 video {
   margin: 0;
   padding: 0;
-  border: 1px solid green;
+  border: none;
   font-size: 100%;
   font: inherit;
   vertical-align: baseline;
@@ -129,11 +129,15 @@ table {
 }
 
 // End of the reset
+
+:root {
+  background-color: #e5ddc8;
+}
+
 *,
 *::before,
 *::after {
   box-sizing: border-box;
-  border: 1px solid green;
 }
 
 body {
