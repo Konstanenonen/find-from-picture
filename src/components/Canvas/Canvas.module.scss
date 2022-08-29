@@ -18,3 +18,10 @@
 .text {
   font-size: 2rem;
 }
+
+.navContent {
+  height: 100%;
+  @include vars.flex-column;
+  padding: 20px;
+  justify-content: space-between;
+}

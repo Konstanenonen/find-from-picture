@@ -85,7 +85,7 @@ function Canvas({ firestore, bestTime, playAgain }: CanvasProps) {
     <>
       <Navbar>
         <h1 className={styles.text}>Find From Picture</h1>
-        <div>
+        <div className={styles.navContent}>
           <HighScore bestTime={bestTime} />
           <Timer
             gameOver={gameOver}
