@@ -7,8 +7,12 @@
 }
 
 .img {
+  margin-top: 15px;
   width: 1000px;
   height: auto;
+  border: 5px solid vars.$main-teal;
+  border-radius: 5px;
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
 }
 
 .text {
