@@ -1,0 +1,16 @@
+@use '../../variables.scss' as vars;
+
+.container {
+  background-color: vars.$main-teal;
+  color: white;
+  font-size: 1.5rem;
+  padding: 10px;
+  border: 2px solid vars.$main-blue;
+  border-radius: 5px;
+}
+
+.container:hover {
+  cursor: pointer;
+  background-color: vars.$main-blue;
+  border-color: black;
+}

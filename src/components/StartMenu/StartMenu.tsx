@@ -4,6 +4,7 @@ import odlaw from '../../images/odlaw.jpg';
 import wizard from '../../images/wizard.png';
 import styles from './StartMenu.module.scss';
 import Navbar from '../Navbar/Navbar';
+import Button from '../Button/Button';
 
 interface StartMenuProps {
   start: () => void;
@@ -30,9 +31,7 @@ function StartMenu({ start }: StartMenuProps) {
           <p className={styles.characterText}>Wizard</p>
         </div>
       </div>
-      <button onClick={start} type="button">
-        START
-      </button>
+      <Button text="START" handleClick={start} isSubmit={false} />
     </div>
   );
 }
