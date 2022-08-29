@@ -12,7 +12,7 @@
 
 .imageContainer {
   border: 1px solid black;
-  border-radius: 3px;
+  border-radius: 2px;
   box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
   @include vars.flex-column;
 }
@@ -23,6 +23,8 @@
 }
 
 .characterText {
+  background-color: white;
+  border-top: 1px solid black;
   font-size: 1.5rem;
   text-align: center;
 }
