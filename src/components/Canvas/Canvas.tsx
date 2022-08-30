@@ -81,6 +81,14 @@ function Canvas({ firestore, bestTime, playAgain }: CanvasProps) {
     getCorrectLocations();
   }, []);
 
+  useEffect(() => {
+    if (wrongLocationSelected) {
+      setTimeout(() => {
+        setWrongLocationSelected(false);
+      }, 2000);
+    }
+  }, [wrongLocationSelected]);
+
   return (
     <>
       <Navbar>
