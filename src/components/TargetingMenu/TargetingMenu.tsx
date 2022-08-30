@@ -1,5 +1,6 @@
 /* eslint-disable no-unused-vars */
 import React from 'react';
+import Button from '../Button/Button';
 import styles from './TargetingMenu.module.scss';
 
 interface Coordinates {
@@ -62,45 +63,39 @@ function TargetingMenu({
     <div className={styles.container} style={{ top, left }}>
       <div className={styles.box} />
       <div className={styles.buttons}>
-        <button
-          type="button"
-          className={styles.button}
-          onClick={() =>
+        <Button
+          text="Waldo"
+          isSubmit={false}
+          handleClick={() =>
             checkIfCorrectLocation(
               correctLocations.waldo,
               { x: menuX, y: menuY },
               setWaldoTrue
             )
           }
-        >
-          Waldo
-        </button>
-        <button
-          type="button"
-          className={styles.button}
-          onClick={() =>
+        />
+        <Button
+          text="Odlaw"
+          isSubmit={false}
+          handleClick={() =>
             checkIfCorrectLocation(
               correctLocations.odlaw,
               { x: menuX, y: menuY },
               setOdlawTrue
             )
           }
-        >
-          Odlaw
-        </button>
-        <button
-          type="button"
-          className={styles.button}
-          onClick={() =>
+        />
+        <Button
+          text="Wizard"
+          isSubmit={false}
+          handleClick={() =>
             checkIfCorrectLocation(
               correctLocations.wizard,
               { x: menuX, y: menuY },
               setWizardTrue
             )
           }
-        >
-          Wizard
-        </button>
+        />
       </div>
     </div>
   );

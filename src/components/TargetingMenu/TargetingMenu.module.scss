@@ -7,14 +7,13 @@
 }
 
 .box {
-  border: 5px solid green;
+  border: 5px solid vars.$main-red;
   width: 75px;
 }
 
 .buttons {
   @include vars.flex-column;
-}
-
-.button {
-  flex: 1;
+  background-color: vars.$main-blue;
+  border: 2px solid vars.$main-blue;
+  gap: 3px;
 }
