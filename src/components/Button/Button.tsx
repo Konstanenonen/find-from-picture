@@ -5,11 +5,13 @@ interface ButtonProps {
   text: string;
   isSubmit: boolean;
   handleClick?: () => void;
+  fontSize?: number;
 }
 
-function button({ text, isSubmit, handleClick }: ButtonProps) {
+function button({ text, isSubmit, handleClick, fontSize }: ButtonProps) {
   return (
     <button
+      style={{ fontSize: `${fontSize}rem` }}
       className={styles.container}
       onClick={handleClick}
       type={isSubmit ? 'submit' : 'button'}

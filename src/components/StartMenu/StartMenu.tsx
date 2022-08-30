@@ -31,7 +31,12 @@ function StartMenu({ start }: StartMenuProps) {
           <p className={styles.characterText}>Wizard</p>
         </div>
       </div>
-      <Button text="START" handleClick={start} isSubmit={false} />
+      <Button
+        text="START"
+        handleClick={start}
+        isSubmit={false}
+        fontSize={1.5}
+      />
     </div>
   );
 }
