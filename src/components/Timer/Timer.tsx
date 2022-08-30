@@ -19,7 +19,7 @@ function Timer({ gameOver, userTime, setUserTime }: TimerProps) {
     };
   }, [gameOver]);
 
-  return <p className={styles.text}>Seconds passed: {userTime}</p>;
+  return <p className={styles.text}>Your time: {userTime} s</p>;
 }
 
 export default Timer;

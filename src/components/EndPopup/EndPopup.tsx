@@ -35,9 +35,9 @@ function EndPopup({ userTime, bestTime, firestore, playAgain }: EndPopupProps) {
     <div>
       {newBestTime ? (
         <form onSubmit={updateBestTime} className={styles.container}>
-          <h3>New fastest time!</h3>
-          <p>New fastest time: {userTime}</p>
-          <label htmlFor="name">
+          <h3>You made a new record!</h3>
+          <p>New best time: {userTime} s</p>
+          <label htmlFor="name" className={styles.label}>
             Name:
             <input
               value={newBestName}
@@ -50,8 +50,8 @@ function EndPopup({ userTime, bestTime, firestore, playAgain }: EndPopupProps) {
         </form>
       ) : (
         <div className={styles.container}>
-          <p>Best time: {bestTime.time}</p>
-          <p>Your time: {userTime}</p>
+          <p>Best time: {bestTime.time} s</p>
+          <p>Your time: {userTime} s</p>
           <Button
             text="PLAY AGAIN"
             isSubmit={false}

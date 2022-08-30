@@ -1,5 +1,5 @@
 import React from 'react';
-// import styles from './HighScore.module.scss';
+import styles from './HighScore.module.scss';
 
 interface BestTime {
   name: string;
@@ -12,10 +12,9 @@ interface HighScoreProps {
 
 function HighScore({ bestTime }: HighScoreProps) {
   return (
-    <div>
-      <p>High score</p>
+    <div className={styles.container}>
       <p>
-        {bestTime.name}: {bestTime.time}
+        Best time: {bestTime.name} {bestTime.time} s
       </p>
     </div>
   );
