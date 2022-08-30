@@ -35,7 +35,7 @@ function EndPopup({ userTime, bestTime, firestore, playAgain }: EndPopupProps) {
     <div>
       {newBestTime ? (
         <form onSubmit={updateBestTime} className={styles.container}>
-          <h3>You made a new record!</h3>
+          <h3 className={styles.bigText}>You made a new record!</h3>
           <p>New best time: {userTime} s</p>
           <label htmlFor="name" className={styles.label}>
             Name:
