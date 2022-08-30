@@ -15,8 +15,8 @@
 }
 
 .imageContainer {
-  border: 1px solid black;
-  border-radius: 2px;
+  border: 3px solid vars.$main-teal;
+  border-radius: 5px;
   box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
   @include vars.flex-column;
 }
@@ -30,7 +30,7 @@
   padding: 10px;
   color: vars.$main-red;
   background-color: white;
-  border-top: 1px solid black;
+  border-top: 3px solid vars.$main-teal;
   font-size: 1.3rem;
   text-align: center;
 }
