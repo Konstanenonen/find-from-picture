@@ -15,7 +15,9 @@ function StartMenu({ start }: StartMenuProps) {
     <div className={styles.container}>
       <Navbar>
         <h1 className={styles.title}>Find From Picture</h1>
-        <p>Find these characters as fast as possible from the picture</p>
+        <p className={styles.subtitle}>
+          Find these characters as fast as possible from the picture
+        </p>
       </Navbar>
       <div className={styles.characters}>
         <div className={styles.imageContainer}>
