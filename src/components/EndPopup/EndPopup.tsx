@@ -1,5 +1,6 @@
 import { Firestore, setDoc, doc } from 'firebase/firestore';
 import React, { useState } from 'react';
+import Button from '../Button/Button';
 import styles from './EndPopup.module.scss';
 
 interface BestTime {
@@ -45,15 +46,18 @@ function EndPopup({ userTime, bestTime, firestore, playAgain }: EndPopupProps) {
               type="text"
             />
           </label>
-          <button type="submit">SAVE</button>
+          <Button text="SAVE" isSubmit fontSize={1.1} />
         </form>
       ) : (
         <div className={styles.container}>
           <p>Best time: {bestTime.time}</p>
           <p>Your time: {userTime}</p>
-          <button type="button" onClick={() => playAgain()}>
-            PLAY AGAIN
-          </button>
+          <Button
+            text="PLAY AGAIN"
+            isSubmit={false}
+            fontSize={1.1}
+            handleClick={() => playAgain()}
+          />
         </div>
       )}
     </div>
