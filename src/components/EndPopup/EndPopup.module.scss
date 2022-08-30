@@ -8,6 +8,7 @@
   margin-right: -50%;
   transform: translate(-50%, -50%);
   background-color: vars.$main-brown;
+  color: vars.$main-blue;
   border: 4px solid vars.$main-teal;
   @include vars.flex-column;
   gap: 30px;
