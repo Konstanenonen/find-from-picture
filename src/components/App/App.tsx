@@ -38,7 +38,7 @@ function App() {
       }
     }
     getCorrectLocations();
-  });
+  }, [start]);
 
   let appState: ReactNode = (
     <Canvas
