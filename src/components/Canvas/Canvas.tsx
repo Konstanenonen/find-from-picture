@@ -2,7 +2,6 @@
 /* eslint-disable jsx-a11y/click-events-have-key-events */
 import { doc, Firestore, getDoc } from 'firebase/firestore';
 import React, { useEffect, useRef, useState } from 'react';
-import waldo from '../../images/waldo.jpg';
 import CorrectLocationGroup from '../CorrectLocationGroup/CorrectLocationGroup';
 import EndPopup from '../EndPopup/EndPopup';
 import HighScore from '../HighScore/HighScore';
@@ -21,6 +20,7 @@ interface CanvasProps {
   firestore: Firestore;
   bestTime: BestTime;
   playAgain: () => void;
+  canvasUrl: string;
 }
 
 interface Coordinates {
@@ -34,7 +34,7 @@ interface CorrectLocations {
   wizard: Coordinates;
 }
 
-function Canvas({ firestore, bestTime, playAgain }: CanvasProps) {
+function Canvas({ firestore, bestTime, playAgain, canvasUrl }: CanvasProps) {
   const imageEl = useRef<any>(null);
   const [menuOpen, setMenuOpen] = useState(false);
   const [menuX, setMenuX] = useState(0);
@@ -105,7 +105,7 @@ function Canvas({ firestore, bestTime, playAgain }: CanvasProps) {
       <div onClick={handleClick} className={styles.container}>
         <img
           ref={imageEl}
-          src={waldo}
+          src={canvasUrl}
           alt="Where is waldo"
           className={styles.img}
         />

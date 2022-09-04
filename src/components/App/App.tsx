@@ -31,6 +31,7 @@ function App() {
   const [waldo, setWaldo] = useState('');
   const [odlaw, setOdlaw] = useState('');
   const [wizard, setWizard] = useState('');
+  const [canvasUrl, setCanvasUrl] = useState('');
 
   useEffect(() => {
     getDownloadURL(ref(storage, 'waldo/waldo-character.png'))
@@ -60,6 +61,15 @@ function App() {
         // Handle any errors
         console.log(error);
       });
+    getDownloadURL(ref(storage, 'waldo/waldo.jpg'))
+      .then((url) => {
+        // Or inserted into an <img> element
+        setCanvasUrl(url);
+      })
+      .catch((error) => {
+        // Handle any errors
+        console.log(error);
+      });
   }, []);
 
   useEffect(() => {
@@ -80,6 +90,7 @@ function App() {
       firestore={firestore}
       bestTime={bestTime}
       playAgain={() => setStart(false)}
+      canvasUrl={canvasUrl}
     />
   );
 
