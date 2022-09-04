@@ -1,4 +1,4 @@
-import React, { ReactNode, useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { initializeApp } from 'firebase/app';
 import { doc, getDoc, getFirestore } from 'firebase/firestore';
 import { getDownloadURL, getStorage, ref } from 'firebase/storage';
@@ -85,29 +85,24 @@ function App() {
     getBestTime();
   }, [start]);
 
-  let appState: ReactNode = (
-    <Canvas
-      firestore={firestore}
-      bestTime={bestTime}
-      playAgain={() => setStart(false)}
-      canvasUrl={canvasUrl}
-    />
-  );
-
-  if (!start) {
-    appState = (
-      <StartMenu
-        firstCharacter={waldo}
-        secondCharacter={odlaw}
-        thirdCharacter={wizard}
-        start={() => setStart(true)}
-      />
-    );
-  }
-
   return (
     <div className={styles.container}>
-      {appState}
+      {!start && (
+        <StartMenu
+          firstCharacter={waldo}
+          secondCharacter={odlaw}
+          thirdCharacter={wizard}
+          start={() => setStart(true)}
+        />
+      )}
+      {start && (
+        <Canvas
+          firestore={firestore}
+          bestTime={bestTime}
+          playAgain={() => setStart(false)}
+          canvasUrl={canvasUrl}
+        />
+      )}
       <Footer />
     </div>
   );

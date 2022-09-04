@@ -60,6 +60,10 @@ function Canvas({ firestore, bestTime, playAgain, canvasUrl }: CanvasProps) {
   }
 
   useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+
+  useEffect(() => {
     async function getCorrectLocations() {
       const docRef = doc(firestore, 'correct-locations', 'correctLocations');
       const docSnap = await getDoc(docRef);
@@ -88,6 +92,8 @@ function Canvas({ firestore, bestTime, playAgain, canvasUrl }: CanvasProps) {
       }, 2000);
     }
   }, [wrongLocationSelected]);
+
+  console.log(correctLocations);
 
   return (
     <>

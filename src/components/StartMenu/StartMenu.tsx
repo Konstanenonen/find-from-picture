@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import styles from './StartMenu.module.scss';
 import Navbar from '../Navbar/Navbar';
 import Button from '../Button/Button';
@@ -16,6 +16,10 @@ function StartMenu({
   secondCharacter,
   thirdCharacter,
 }: StartMenuProps) {
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+
   return (
     <div className={styles.container}>
       <Navbar>
