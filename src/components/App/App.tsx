@@ -73,7 +73,7 @@ function App() {
   }, []);
 
   useEffect(() => {
-    async function getCorrectLocations() {
+    async function getBestTime() {
       const docRef = doc(firestore, 'high-score', 'bestTime');
       const docSnap = await getDoc(docRef);
 
@@ -82,7 +82,7 @@ function App() {
         setBestTime(firestoreBestTime);
       }
     }
-    getCorrectLocations();
+    getBestTime();
   }, [start]);
 
   let appState: ReactNode = (
