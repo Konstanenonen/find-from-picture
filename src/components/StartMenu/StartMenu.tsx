@@ -1,16 +1,21 @@
 import React from 'react';
-import waldo from '../../images/waldo-character.png';
-import odlaw from '../../images/odlaw.jpg';
-import wizard from '../../images/wizard.png';
 import styles from './StartMenu.module.scss';
 import Navbar from '../Navbar/Navbar';
 import Button from '../Button/Button';
 
 interface StartMenuProps {
   start: () => void;
+  firstCharacter: string;
+  secondCharacter: string;
+  thirdCharacter: string;
 }
 
-function StartMenu({ start }: StartMenuProps) {
+function StartMenu({
+  start,
+  firstCharacter,
+  secondCharacter,
+  thirdCharacter,
+}: StartMenuProps) {
   return (
     <div className={styles.container}>
       <Navbar>
@@ -21,15 +26,27 @@ function StartMenu({ start }: StartMenuProps) {
       </Navbar>
       <div className={styles.characters}>
         <div className={styles.imageContainer}>
-          <img className={styles.image} src={waldo} alt="Happy Waldo" />
+          <img
+            className={styles.image}
+            src={firstCharacter}
+            alt="Happy Waldo"
+          />
           <p className={styles.characterText}>Waldo</p>
         </div>
         <div className={styles.imageContainer}>
-          <img className={styles.image} src={odlaw} alt="Happy Odlaw" />
+          <img
+            className={styles.image}
+            src={secondCharacter}
+            alt="Happy Odlaw"
+          />
           <p className={styles.characterText}>Odlaw</p>
         </div>
         <div className={styles.imageContainer}>
-          <img className={styles.image} src={wizard} alt="Happy Wizard" />
+          <img
+            className={styles.image}
+            src={thirdCharacter}
+            alt="Happy Wizard"
+          />
           <p className={styles.characterText}>Wizard</p>
         </div>
       </div>

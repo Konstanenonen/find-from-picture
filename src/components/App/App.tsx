@@ -28,17 +28,39 @@ interface BestTime {
 function App() {
   const [start, setStart] = useState(false);
   const [bestTime, setBestTime] = useState<BestTime>({ name: '', time: 0 });
+  const [waldo, setWaldo] = useState('');
+  const [odlaw, setOdlaw] = useState('');
   const [wizard, setWizard] = useState('');
 
-  getDownloadURL(ref(storage, 'images/wizard.png'))
-    .then((url) => {
-      // Or inserted into an <img> element
-      setWizard(url);
-    })
-    .catch((error) => {
-      // Handle any errors
-      console.log(error);
-    });
+  useEffect(() => {
+    getDownloadURL(ref(storage, 'waldo/waldo-character.png'))
+      .then((url) => {
+        // Or inserted into an <img> element
+        setWaldo(url);
+      })
+      .catch((error) => {
+        // Handle any errors
+        console.log(error);
+      });
+    getDownloadURL(ref(storage, 'waldo/odlaw.jpg'))
+      .then((url) => {
+        // Or inserted into an <img> element
+        setOdlaw(url);
+      })
+      .catch((error) => {
+        // Handle any errors
+        console.log(error);
+      });
+    getDownloadURL(ref(storage, 'waldo/wizard.png'))
+      .then((url) => {
+        // Or inserted into an <img> element
+        setWizard(url);
+      })
+      .catch((error) => {
+        // Handle any errors
+        console.log(error);
+      });
+  }, []);
 
   useEffect(() => {
     async function getCorrectLocations() {
@@ -62,14 +84,20 @@ function App() {
   );
 
   if (!start) {
-    appState = <StartMenu start={() => setStart(true)} />;
+    appState = (
+      <StartMenu
+        firstCharacter={waldo}
+        secondCharacter={odlaw}
+        thirdCharacter={wizard}
+        start={() => setStart(true)}
+      />
+    );
   }
 
   return (
     <div className={styles.container}>
       {appState}
       <Footer />
-      <img src={wizard} alt="wizard" />
     </div>
   );
 }
