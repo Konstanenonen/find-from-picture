@@ -1,6 +1,7 @@
 import React, { ReactNode, useEffect, useState } from 'react';
 import { initializeApp } from 'firebase/app';
 import { doc, getDoc, getFirestore } from 'firebase/firestore';
+import { getDownloadURL, getStorage, ref } from 'firebase/storage';
 import Canvas from '../Canvas/Canvas';
 import styles from './App.module.scss';
 import StartMenu from '../StartMenu/StartMenu';
@@ -16,8 +17,8 @@ const firebaseConfig = {
 };
 
 const firebaseApp = initializeApp(firebaseConfig);
-
 const firestore = getFirestore(firebaseApp);
+const storage = getStorage(firebaseApp);
 
 interface BestTime {
   name: string;
@@ -27,6 +28,17 @@ interface BestTime {
 function App() {
   const [start, setStart] = useState(false);
   const [bestTime, setBestTime] = useState<BestTime>({ name: '', time: 0 });
+  const [wizard, setWizard] = useState('');
+
+  getDownloadURL(ref(storage, 'images/wizard.png'))
+    .then((url) => {
+      // Or inserted into an <img> element
+      setWizard(url);
+    })
+    .catch((error) => {
+      // Handle any errors
+      console.log(error);
+    });
 
   useEffect(() => {
     async function getCorrectLocations() {
@@ -57,6 +69,7 @@ function App() {
     <div className={styles.container}>
       {appState}
       <Footer />
+      <img src={wizard} alt="wizard" />
     </div>
   );
 }
