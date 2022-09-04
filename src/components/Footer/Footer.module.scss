@@ -1,0 +1,17 @@
+@use '../../variables.scss' as vars;
+
+.container {
+  margin-top: 50px;
+  background-color: vars.$main-blue;
+  color: white;
+  padding: 20px;
+  height: 150px;
+  @include vars.flex-column;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+
+  a {
+    color: vars.$main-red;
+  }
+}
