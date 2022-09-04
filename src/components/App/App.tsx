@@ -4,6 +4,7 @@ import { doc, getDoc, getFirestore } from 'firebase/firestore';
 import Canvas from '../Canvas/Canvas';
 import styles from './App.module.scss';
 import StartMenu from '../StartMenu/StartMenu';
+import Footer from '../Footer/Footer';
 
 const firebaseConfig = {
   apiKey: 'AIzaSyBguB1cnwI-okJrHcYqGZnypeV7eLqBeuw',
@@ -52,7 +53,12 @@ function App() {
     appState = <StartMenu start={() => setStart(true)} />;
   }
 
-  return <div className={styles.container}>{appState}</div>;
+  return (
+    <div className={styles.container}>
+      {appState}
+      <Footer />
+    </div>
+  );
 }
 
 export default App;
