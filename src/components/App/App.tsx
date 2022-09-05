@@ -44,7 +44,7 @@ function App() {
         // Handle any errors
         console.log(error);
       });
-    getDownloadURL(ref(storage, `${imageFolder}/character2.jpg`))
+    getDownloadURL(ref(storage, `${imageFolder}/character2.png`))
       .then((url) => {
         // Or inserted into an <img> element
         setOdlaw(url);
