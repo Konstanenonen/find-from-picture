@@ -1,8 +1,8 @@
 @use '../../variables.scss' as vars;
 
 .container {
-  width: 100px;
-  height: 100px;
+  width: 150px;
+  height: 150px;
   background-color: vars.$main-teal;
   animation-name: spin;
   border-radius: 50%;
