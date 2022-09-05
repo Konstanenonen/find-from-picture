@@ -32,9 +32,10 @@ function App() {
   const [odlaw, setOdlaw] = useState('');
   const [wizard, setWizard] = useState('');
   const [canvasUrl, setCanvasUrl] = useState('');
+  const [imageFolder, setImageFolder] = useState('waldo');
 
   useEffect(() => {
-    getDownloadURL(ref(storage, 'waldo/waldo-character.png'))
+    getDownloadURL(ref(storage, `${imageFolder}/character1.png`))
       .then((url) => {
         // Or inserted into an <img> element
         setWaldo(url);
@@ -43,7 +44,7 @@ function App() {
         // Handle any errors
         console.log(error);
       });
-    getDownloadURL(ref(storage, 'waldo/odlaw.jpg'))
+    getDownloadURL(ref(storage, `${imageFolder}/character2.jpg`))
       .then((url) => {
         // Or inserted into an <img> element
         setOdlaw(url);
@@ -52,7 +53,7 @@ function App() {
         // Handle any errors
         console.log(error);
       });
-    getDownloadURL(ref(storage, 'waldo/wizard.png'))
+    getDownloadURL(ref(storage, `${imageFolder}/character3.png`))
       .then((url) => {
         // Or inserted into an <img> element
         setWizard(url);
@@ -61,7 +62,7 @@ function App() {
         // Handle any errors
         console.log(error);
       });
-    getDownloadURL(ref(storage, 'waldo/waldo.jpg'))
+    getDownloadURL(ref(storage, `${imageFolder}/canvas.jpg`))
       .then((url) => {
         // Or inserted into an <img> element
         setCanvasUrl(url);
@@ -70,7 +71,7 @@ function App() {
         // Handle any errors
         console.log(error);
       });
-  }, []);
+  }, [imageFolder]);
 
   useEffect(() => {
     async function getBestTime() {
@@ -87,6 +88,9 @@ function App() {
 
   return (
     <div className={styles.container}>
+      <button type="button" onClick={() => setImageFolder('pokemon')}>
+        change to Pokemon
+      </button>
       {!start && (
         <StartMenu
           firstCharacter={waldo}
