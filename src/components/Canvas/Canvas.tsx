@@ -5,6 +5,7 @@ import React, { useEffect, useRef, useState } from 'react';
 import CorrectLocationGroup from '../CorrectLocationGroup/CorrectLocationGroup';
 import EndPopup from '../EndPopup/EndPopup';
 import HighScore from '../HighScore/HighScore';
+import LoadingSpinner from '../LoadingSpinner/LoadingSpinner';
 import Navbar from '../Navbar/Navbar';
 import TargetingMenu from '../TargetingMenu/TargetingMenu';
 import Timer from '../Timer/Timer';
@@ -50,6 +51,7 @@ function Canvas({ firestore, bestTime, playAgain, canvasUrl }: CanvasProps) {
   const [userTime, setUserTime] = useState(0);
   const [wrongLocationSelected, setWrongLocationSelected] = useState(false);
   const gameOver = waldoLocation && wizardLocation && odlawLocation;
+  const loading = correctLocations.waldo.x === 0;
 
   function handleClick(e: any) {
     const x = Number(e.pageX - 40);
@@ -115,6 +117,7 @@ function Canvas({ firestore, bestTime, playAgain, canvasUrl }: CanvasProps) {
           alt="Where is waldo"
           className={styles.img}
         />
+        {loading && <LoadingSpinner />}
         {menuOpen && (
           <TargetingMenu
             top={menuY}

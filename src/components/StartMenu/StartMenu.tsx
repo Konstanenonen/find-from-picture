@@ -2,6 +2,7 @@ import React, { useEffect } from 'react';
 import styles from './StartMenu.module.scss';
 import Navbar from '../Navbar/Navbar';
 import Button from '../Button/Button';
+import LoadingSpinner from '../LoadingSpinner/LoadingSpinner';
 
 interface StartMenuProps {
   start: () => void;
@@ -30,27 +31,39 @@ function StartMenu({
       </Navbar>
       <div className={styles.characters}>
         <div className={styles.imageContainer}>
-          <img
-            className={styles.image}
-            src={firstCharacter}
-            alt="Happy Waldo"
-          />
+          {firstCharacter ? (
+            <img
+              className={styles.image}
+              src={firstCharacter}
+              alt="Happy Waldo"
+            />
+          ) : (
+            <LoadingSpinner />
+          )}
           <p className={styles.characterText}>Waldo</p>
         </div>
         <div className={styles.imageContainer}>
-          <img
-            className={styles.image}
-            src={secondCharacter}
-            alt="Happy Odlaw"
-          />
+          {secondCharacter ? (
+            <img
+              className={styles.image}
+              src={secondCharacter}
+              alt="Happy Odlaw"
+            />
+          ) : (
+            <LoadingSpinner />
+          )}
           <p className={styles.characterText}>Odlaw</p>
         </div>
         <div className={styles.imageContainer}>
-          <img
-            className={styles.image}
-            src={thirdCharacter}
-            alt="Happy Wizard"
-          />
+          {thirdCharacter ? (
+            <img
+              className={styles.image}
+              src={thirdCharacter}
+              alt="Happy Wizard"
+            />
+          ) : (
+            <LoadingSpinner />
+          )}
           <p className={styles.characterText}>Wizard</p>
         </div>
       </div>
