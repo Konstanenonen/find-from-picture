@@ -35,7 +35,7 @@ function App() {
   const [imageFolder, setImageFolder] = useState('waldo');
 
   useEffect(() => {
-    getDownloadURL(ref(storage, `${imageFolder}/character1.png`))
+    getDownloadURL(ref(storage, `${imageFolder}/character1.jpg`))
       .then((url) => {
         // Or inserted into an <img> element
         setWaldo(url);
@@ -44,7 +44,7 @@ function App() {
         // Handle any errors
         console.log(error);
       });
-    getDownloadURL(ref(storage, `${imageFolder}/character2.png`))
+    getDownloadURL(ref(storage, `${imageFolder}/character2.jpg`))
       .then((url) => {
         // Or inserted into an <img> element
         setOdlaw(url);
@@ -53,7 +53,7 @@ function App() {
         // Handle any errors
         console.log(error);
       });
-    getDownloadURL(ref(storage, `${imageFolder}/character3.png`))
+    getDownloadURL(ref(storage, `${imageFolder}/character3.jpg`))
       .then((url) => {
         // Or inserted into an <img> element
         setWizard(url);
