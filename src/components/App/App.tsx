@@ -88,16 +88,24 @@ function App() {
 
   return (
     <div className={styles.container}>
-      <button type="button" onClick={() => setImageFolder('pokemon')}>
-        change to Pokemon
-      </button>
       {!start && (
-        <StartMenu
-          firstCharacter={firstCharacter}
-          secondCharacter={secondCharacter}
-          thirdCharacter={thirdCharacter}
-          start={() => setStart(true)}
-        />
+        <div>
+          <button type="button" onClick={() => setImageFolder('waldo')}>
+            Play Classic
+          </button>
+          <button type="button" onClick={() => setImageFolder('pokemon')}>
+            Play Pokemon
+          </button>
+          <StartMenu
+            firstCharacter={firstCharacter}
+            secondCharacter={secondCharacter}
+            thirdCharacter={thirdCharacter}
+            firstName={imageFolder === 'waldo' ? 'Waldo' : 'Marshtomp'}
+            secondName={imageFolder === 'waldo' ? 'Odlaw' : 'Charizard'}
+            thirdName={imageFolder === 'waldo' ? 'Wizard' : 'Bulbasaur'}
+            start={() => setStart(true)}
+          />
+        </div>
       )}
       {start && (
         <Canvas

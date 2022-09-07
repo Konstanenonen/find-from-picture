@@ -9,6 +9,9 @@ interface StartMenuProps {
   firstCharacter: string;
   secondCharacter: string;
   thirdCharacter: string;
+  firstName: string;
+  secondName: string;
+  thirdName: string;
 }
 
 function StartMenu({
@@ -16,6 +19,9 @@ function StartMenu({
   firstCharacter,
   secondCharacter,
   thirdCharacter,
+  firstName,
+  secondName,
+  thirdName,
 }: StartMenuProps) {
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -40,7 +46,7 @@ function StartMenu({
           ) : (
             <LoadingSpinner />
           )}
-          <p className={styles.characterText}>Waldo</p>
+          <p className={styles.characterText}>{firstName}</p>
         </div>
         <div className={styles.imageContainer}>
           {secondCharacter ? (
@@ -52,7 +58,7 @@ function StartMenu({
           ) : (
             <LoadingSpinner />
           )}
-          <p className={styles.characterText}>Odlaw</p>
+          <p className={styles.characterText}>{secondName}</p>
         </div>
         <div className={styles.imageContainer}>
           {thirdCharacter ? (
@@ -64,7 +70,7 @@ function StartMenu({
           ) : (
             <LoadingSpinner />
           )}
-          <p className={styles.characterText}>Wizard</p>
+          <p className={styles.characterText}>{thirdName}</p>
         </div>
       </div>
       <Button
