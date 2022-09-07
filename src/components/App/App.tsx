@@ -28,9 +28,9 @@ interface BestTime {
 function App() {
   const [start, setStart] = useState(false);
   const [bestTime, setBestTime] = useState<BestTime>({ name: '', time: 0 });
-  const [waldo, setWaldo] = useState('');
-  const [odlaw, setOdlaw] = useState('');
-  const [wizard, setWizard] = useState('');
+  const [firstCharacter, setFirstCharacter] = useState('');
+  const [secondCharacter, setSecondCharacter] = useState('');
+  const [thirdCharacter, setThirdCharacter] = useState('');
   const [canvasUrl, setCanvasUrl] = useState('');
   const [imageFolder, setImageFolder] = useState('waldo');
 
@@ -38,7 +38,7 @@ function App() {
     getDownloadURL(ref(storage, `${imageFolder}/character1.jpg`))
       .then((url) => {
         // Or inserted into an <img> element
-        setWaldo(url);
+        setFirstCharacter(url);
       })
       .catch((error) => {
         // Handle any errors
@@ -47,7 +47,7 @@ function App() {
     getDownloadURL(ref(storage, `${imageFolder}/character2.jpg`))
       .then((url) => {
         // Or inserted into an <img> element
-        setOdlaw(url);
+        setSecondCharacter(url);
       })
       .catch((error) => {
         // Handle any errors
@@ -56,7 +56,7 @@ function App() {
     getDownloadURL(ref(storage, `${imageFolder}/character3.jpg`))
       .then((url) => {
         // Or inserted into an <img> element
-        setWizard(url);
+        setThirdCharacter(url);
       })
       .catch((error) => {
         // Handle any errors
@@ -93,9 +93,9 @@ function App() {
       </button>
       {!start && (
         <StartMenu
-          firstCharacter={waldo}
-          secondCharacter={odlaw}
-          thirdCharacter={wizard}
+          firstCharacter={firstCharacter}
+          secondCharacter={secondCharacter}
+          thirdCharacter={thirdCharacter}
           start={() => setStart(true)}
         />
       )}
