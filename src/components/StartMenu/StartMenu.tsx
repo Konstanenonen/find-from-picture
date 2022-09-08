@@ -38,12 +38,20 @@ function StartMenu({
           Find these characters as fast as possible from the picture
         </p>
       </Navbar>
-      <button type="button" onClick={() => setGameTheme('waldo')}>
-        Play Classic
-      </button>
-      <button type="button" onClick={() => setGameTheme('pokemon')}>
-        Play Pokemon
-      </button>
+      <div className={styles.flexRow}>
+        <Button
+          text="Classic"
+          isSubmit={false}
+          handleClick={() => setGameTheme('waldo')}
+          fontSize={1.8}
+        />
+        <Button
+          text="Pokemon"
+          isSubmit={false}
+          handleClick={() => setGameTheme('pokemon')}
+          fontSize={1.8}
+        />
+      </div>
       <div className={styles.characters}>
         <div className={styles.imageContainer}>
           {firstCharacter ? (
