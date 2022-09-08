@@ -12,6 +12,8 @@ interface StartMenuProps {
   firstName: string;
   secondName: string;
   thirdName: string;
+  // eslint-disable-next-line no-unused-vars
+  setGameTheme: (themeName: string) => void;
 }
 
 function StartMenu({
@@ -22,6 +24,7 @@ function StartMenu({
   firstName,
   secondName,
   thirdName,
+  setGameTheme,
 }: StartMenuProps) {
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -35,6 +38,12 @@ function StartMenu({
           Find these characters as fast as possible from the picture
         </p>
       </Navbar>
+      <button type="button" onClick={() => setGameTheme('waldo')}>
+        Play Classic
+      </button>
+      <button type="button" onClick={() => setGameTheme('pokemon')}>
+        Play Pokemon
+      </button>
       <div className={styles.characters}>
         <div className={styles.imageContainer}>
           {firstCharacter ? (

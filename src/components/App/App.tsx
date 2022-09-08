@@ -90,13 +90,8 @@ function App() {
     <div className={styles.container}>
       {!start && (
         <div>
-          <button type="button" onClick={() => setGameTheme('waldo')}>
-            Play Classic
-          </button>
-          <button type="button" onClick={() => setGameTheme('pokemon')}>
-            Play Pokemon
-          </button>
           <StartMenu
+            setGameTheme={setGameTheme}
             firstCharacter={firstCharacter}
             secondCharacter={secondCharacter}
             thirdCharacter={thirdCharacter}
