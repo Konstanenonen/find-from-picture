@@ -32,10 +32,10 @@ function App() {
   const [secondCharacter, setSecondCharacter] = useState('');
   const [thirdCharacter, setThirdCharacter] = useState('');
   const [canvasUrl, setCanvasUrl] = useState('');
-  const [imageFolder, setImageFolder] = useState('waldo');
+  const [gameTheme, setGameTheme] = useState('waldo');
 
   useEffect(() => {
-    getDownloadURL(ref(storage, `${imageFolder}/character1.jpg`))
+    getDownloadURL(ref(storage, `${gameTheme}/character1.jpg`))
       .then((url) => {
         // Or inserted into an <img> element
         setFirstCharacter(url);
@@ -44,7 +44,7 @@ function App() {
         // Handle any errors
         console.log(error);
       });
-    getDownloadURL(ref(storage, `${imageFolder}/character2.jpg`))
+    getDownloadURL(ref(storage, `${gameTheme}/character2.jpg`))
       .then((url) => {
         // Or inserted into an <img> element
         setSecondCharacter(url);
@@ -53,7 +53,7 @@ function App() {
         // Handle any errors
         console.log(error);
       });
-    getDownloadURL(ref(storage, `${imageFolder}/character3.jpg`))
+    getDownloadURL(ref(storage, `${gameTheme}/character3.jpg`))
       .then((url) => {
         // Or inserted into an <img> element
         setThirdCharacter(url);
@@ -62,7 +62,7 @@ function App() {
         // Handle any errors
         console.log(error);
       });
-    getDownloadURL(ref(storage, `${imageFolder}/canvas.jpg`))
+    getDownloadURL(ref(storage, `${gameTheme}/canvas.jpg`))
       .then((url) => {
         // Or inserted into an <img> element
         setCanvasUrl(url);
@@ -71,7 +71,7 @@ function App() {
         // Handle any errors
         console.log(error);
       });
-  }, [imageFolder]);
+  }, [gameTheme]);
 
   useEffect(() => {
     async function getBestTime() {
@@ -90,19 +90,19 @@ function App() {
     <div className={styles.container}>
       {!start && (
         <div>
-          <button type="button" onClick={() => setImageFolder('waldo')}>
+          <button type="button" onClick={() => setGameTheme('waldo')}>
             Play Classic
           </button>
-          <button type="button" onClick={() => setImageFolder('pokemon')}>
+          <button type="button" onClick={() => setGameTheme('pokemon')}>
             Play Pokemon
           </button>
           <StartMenu
             firstCharacter={firstCharacter}
             secondCharacter={secondCharacter}
             thirdCharacter={thirdCharacter}
-            firstName={imageFolder === 'waldo' ? 'Waldo' : 'Marshtomp'}
-            secondName={imageFolder === 'waldo' ? 'Odlaw' : 'Charizard'}
-            thirdName={imageFolder === 'waldo' ? 'Wizard' : 'Bulbasaur'}
+            firstName={gameTheme === 'waldo' ? 'Waldo' : 'Marshtomp'}
+            secondName={gameTheme === 'waldo' ? 'Odlaw' : 'Charizard'}
+            thirdName={gameTheme === 'waldo' ? 'Wizard' : 'Bulbasaur'}
             start={() => setStart(true)}
           />
         </div>
@@ -113,6 +113,7 @@ function App() {
           bestTime={bestTime}
           playAgain={() => setStart(false)}
           canvasUrl={canvasUrl}
+          gameTheme={gameTheme}
         />
       )}
       <Footer />

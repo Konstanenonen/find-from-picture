@@ -7,9 +7,9 @@ interface Coordinates {
 }
 
 interface CorrectLocations {
-  waldo: Coordinates;
-  odlaw: Coordinates;
-  wizard: Coordinates;
+  firstCharacter: Coordinates;
+  secondCharacter: Coordinates;
+  thirdCharacter: Coordinates;
 }
 
 interface CorrectLocationGroupProps {
@@ -29,20 +29,20 @@ function CorrectLocationGroup({
     <>
       {waldoLocation && (
         <CorrectLocation
-          top={correctLocations.waldo.y}
-          left={correctLocations.waldo.x}
-        />
-      )}
-      {wizardLocation && (
-        <CorrectLocation
-          top={correctLocations.wizard.y}
-          left={correctLocations.wizard.x}
+          top={correctLocations.firstCharacter.y}
+          left={correctLocations.firstCharacter.x}
         />
       )}
       {odlawLocation && (
         <CorrectLocation
-          top={correctLocations.odlaw.y}
-          left={correctLocations.odlaw.x}
+          top={correctLocations.secondCharacter.y}
+          left={correctLocations.secondCharacter.x}
+        />
+      )}
+      {wizardLocation && (
+        <CorrectLocation
+          top={correctLocations.thirdCharacter.y}
+          left={correctLocations.thirdCharacter.x}
         />
       )}
     </>

@@ -9,9 +9,9 @@ interface Coordinates {
 }
 
 interface CorrectLocations {
-  waldo: Coordinates;
-  odlaw: Coordinates;
-  wizard: Coordinates;
+  firstCharacter: Coordinates;
+  secondCharacter: Coordinates;
+  thirdCharacter: Coordinates;
 }
 
 interface TargetingMenuProps {
@@ -68,7 +68,7 @@ function TargetingMenu({
           isSubmit={false}
           handleClick={() =>
             checkIfCorrectLocation(
-              correctLocations.waldo,
+              correctLocations.firstCharacter,
               { x: menuX, y: menuY },
               setWaldoTrue
             )
@@ -79,7 +79,7 @@ function TargetingMenu({
           isSubmit={false}
           handleClick={() =>
             checkIfCorrectLocation(
-              correctLocations.odlaw,
+              correctLocations.secondCharacter,
               { x: menuX, y: menuY },
               setOdlawTrue
             )
@@ -90,7 +90,7 @@ function TargetingMenu({
           isSubmit={false}
           handleClick={() =>
             checkIfCorrectLocation(
-              correctLocations.wizard,
+              correctLocations.thirdCharacter,
               { x: menuX, y: menuY },
               setWizardTrue
             )

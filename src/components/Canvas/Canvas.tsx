@@ -22,6 +22,7 @@ interface CanvasProps {
   bestTime: BestTime;
   playAgain: () => void;
   canvasUrl: string;
+  gameTheme: string;
 }
 
 interface Coordinates {
@@ -30,12 +31,18 @@ interface Coordinates {
 }
 
 interface CorrectLocations {
-  waldo: Coordinates;
-  odlaw: Coordinates;
-  wizard: Coordinates;
+  firstCharacter: Coordinates;
+  secondCharacter: Coordinates;
+  thirdCharacter: Coordinates;
 }
 
-function Canvas({ firestore, bestTime, playAgain, canvasUrl }: CanvasProps) {
+function Canvas({
+  firestore,
+  bestTime,
+  playAgain,
+  canvasUrl,
+  gameTheme,
+}: CanvasProps) {
   const imageEl = useRef<any>(null);
   const [menuOpen, setMenuOpen] = useState(false);
   const [menuX, setMenuX] = useState(0);
@@ -44,14 +51,14 @@ function Canvas({ firestore, bestTime, playAgain, canvasUrl }: CanvasProps) {
   const [wizardLocation, setWizardLocation] = useState(false);
   const [odlawLocation, setOdlawLocation] = useState(false);
   const [correctLocations, setCorrectLocations] = useState<CorrectLocations>({
-    waldo: { x: 0, y: 0 },
-    odlaw: { x: 0, y: 0 },
-    wizard: { x: 0, y: 0 },
+    firstCharacter: { x: 0, y: 0 },
+    secondCharacter: { x: 0, y: 0 },
+    thirdCharacter: { x: 0, y: 0 },
   });
   const [userTime, setUserTime] = useState(0);
   const [wrongLocationSelected, setWrongLocationSelected] = useState(false);
   const gameOver = waldoLocation && wizardLocation && odlawLocation;
-  const loading = correctLocations.waldo.x === 0;
+  const loading = correctLocations.firstCharacter.x === 0;
 
   function handleClick(e: any) {
     const x = Number(e.pageX - 40);
@@ -67,19 +74,19 @@ function Canvas({ firestore, bestTime, playAgain, canvasUrl }: CanvasProps) {
 
   useEffect(() => {
     async function getCorrectLocations() {
-      const docRef = doc(firestore, 'correct-locations', 'correctLocations');
+      const docRef = doc(firestore, 'correct-locations', gameTheme);
       const docSnap = await getDoc(docRef);
 
       if (docSnap.exists()) {
         const imageOffset = imageEl.current.getBoundingClientRect();
         const locationData = docSnap.data() as CorrectLocations;
 
-        locationData.odlaw.x += imageOffset.x;
-        locationData.odlaw.y += imageOffset.y;
-        locationData.waldo.x += imageOffset.x;
-        locationData.waldo.y += imageOffset.y;
-        locationData.wizard.x += imageOffset.x;
-        locationData.wizard.y += imageOffset.y;
+        locationData.firstCharacter.x += imageOffset.x;
+        locationData.firstCharacter.y += imageOffset.y;
+        locationData.secondCharacter.x += imageOffset.x;
+        locationData.secondCharacter.y += imageOffset.y;
+        locationData.thirdCharacter.x += imageOffset.x;
+        locationData.thirdCharacter.y += imageOffset.y;
 
         setCorrectLocations(locationData);
       }
