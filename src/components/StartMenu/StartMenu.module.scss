@@ -19,10 +19,14 @@
   border-radius: 5px;
   box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
   @include vars.flex-column;
+  justify-content: space-between;
+  align-items: center;
+  min-width: 235px;
+  min-height: 400px;
 }
 
 .image {
-  width: 200px;
+  width: 235px;
   height: 400px;
 }
 
@@ -33,6 +37,7 @@
   border-top: 3px solid vars.$main-teal;
   font-size: 1.3rem;
   text-align: center;
+  width: 100%;
 }
 
 .characters {

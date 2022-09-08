@@ -47,9 +47,9 @@ function Canvas({
   const [menuOpen, setMenuOpen] = useState(false);
   const [menuX, setMenuX] = useState(0);
   const [menuY, setMenuY] = useState(0);
-  const [waldoLocation, setWaldoLocation] = useState(false);
-  const [wizardLocation, setWizardLocation] = useState(false);
-  const [odlawLocation, setOdlawLocation] = useState(false);
+  const [firstVisibility, setFirstVisibility] = useState(false);
+  const [secondVisibility, setSecondVisibility] = useState(false);
+  const [thirdVisibility, setThirdVisibility] = useState(false);
   const [correctLocations, setCorrectLocations] = useState<CorrectLocations>({
     firstCharacter: { x: 0, y: 0 },
     secondCharacter: { x: 0, y: 0 },
@@ -57,7 +57,7 @@ function Canvas({
   });
   const [userTime, setUserTime] = useState(0);
   const [wrongLocationSelected, setWrongLocationSelected] = useState(false);
-  const gameOver = waldoLocation && wizardLocation && odlawLocation;
+  const gameOver = firstVisibility && secondVisibility && thirdVisibility;
   const loading = correctLocations.firstCharacter.x === 0;
 
   function handleClick(e: any) {
@@ -130,18 +130,19 @@ function Canvas({
             top={menuY}
             left={menuX}
             correctLocations={correctLocations}
-            setWaldoTrue={() => setWaldoLocation(true)}
-            setOdlawTrue={() => setOdlawLocation(true)}
-            setWizardTrue={() => setWizardLocation(true)}
+            setFirstVisibility={() => setFirstVisibility(true)}
+            setSecondsVisibility={() => setSecondVisibility(true)}
+            setThirdVisibility={() => setThirdVisibility(true)}
             menuX={menuX}
             menuY={menuY}
             setWrongLocationSelected={setWrongLocationSelected}
+            gameTheme={gameTheme}
           />
         )}
         <CorrectLocationGroup
-          waldoLocation={waldoLocation}
-          wizardLocation={wizardLocation}
-          odlawLocation={odlawLocation}
+          waldoLocation={firstVisibility}
+          odlawLocation={secondVisibility}
+          wizardLocation={thirdVisibility}
           correctLocations={correctLocations}
         />
       </div>

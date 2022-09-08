@@ -18,24 +18,26 @@ interface TargetingMenuProps {
   top: number;
   left: number;
   correctLocations: CorrectLocations;
-  setWaldoTrue: () => void;
-  setOdlawTrue: () => void;
-  setWizardTrue: () => void;
+  setFirstVisibility: () => void;
+  setSecondsVisibility: () => void;
+  setThirdVisibility: () => void;
   menuX: number;
   menuY: number;
   setWrongLocationSelected: (bool: boolean) => void;
+  gameTheme: string;
 }
 
 function TargetingMenu({
   top,
   left,
   correctLocations,
-  setWaldoTrue,
-  setOdlawTrue,
-  setWizardTrue,
+  setFirstVisibility,
+  setSecondsVisibility,
+  setThirdVisibility,
   menuX,
   menuY,
   setWrongLocationSelected,
+  gameTheme,
 }: TargetingMenuProps) {
   function checkIfCorrectLocation(
     correctLocation: Coordinates,
@@ -59,40 +61,42 @@ function TargetingMenu({
     setWrongLocationSelected(false);
   }
 
+  const classicMode = gameTheme === 'waldo';
+
   return (
     <div className={styles.container} style={{ top, left }}>
       <div className={styles.box} />
       <div className={styles.buttons}>
         <Button
-          text="Waldo"
+          text={classicMode ? 'Waldo' : 'Marshtomp'}
           isSubmit={false}
           handleClick={() =>
             checkIfCorrectLocation(
               correctLocations.firstCharacter,
               { x: menuX, y: menuY },
-              setWaldoTrue
+              setFirstVisibility
             )
           }
         />
         <Button
-          text="Odlaw"
+          text={classicMode ? 'Odlaw' : 'Charizard'}
           isSubmit={false}
           handleClick={() =>
             checkIfCorrectLocation(
               correctLocations.secondCharacter,
               { x: menuX, y: menuY },
-              setOdlawTrue
+              setSecondsVisibility
             )
           }
         />
         <Button
-          text="Wizard"
+          text={classicMode ? 'Wizard' : 'Bulbasaur'}
           isSubmit={false}
           handleClick={() =>
             checkIfCorrectLocation(
               correctLocations.thirdCharacter,
               { x: menuX, y: menuY },
-              setWizardTrue
+              setThirdVisibility
             )
           }
         />
