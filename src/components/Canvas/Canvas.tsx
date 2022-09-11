@@ -102,8 +102,6 @@ function Canvas({
     }
   }, [wrongLocationSelected]);
 
-  console.log(correctLocations);
-
   return (
     <>
       <Navbar>
