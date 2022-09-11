@@ -13,15 +13,22 @@ interface EndPopupProps {
   bestTime: BestTime;
   firestore: Firestore;
   playAgain: () => void;
+  gameTheme: string;
 }
 
-function EndPopup({ userTime, bestTime, firestore, playAgain }: EndPopupProps) {
+function EndPopup({
+  userTime,
+  bestTime,
+  firestore,
+  playAgain,
+  gameTheme,
+}: EndPopupProps) {
   const [newBestName, setNewBestName] = useState('');
 
   async function updateBestTime(e: any) {
     e.preventDefault();
 
-    await setDoc(doc(firestore, 'high-score', 'bestTime'), {
+    await setDoc(doc(firestore, 'high-score', gameTheme), {
       name: newBestName,
       time: userTime,
     });

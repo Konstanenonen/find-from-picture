@@ -75,7 +75,7 @@ function App() {
 
   useEffect(() => {
     async function getBestTime() {
-      const docRef = doc(firestore, 'high-score', 'bestTime');
+      const docRef = doc(firestore, 'high-score', gameTheme);
       const docSnap = await getDoc(docRef);
 
       if (docSnap.exists()) {

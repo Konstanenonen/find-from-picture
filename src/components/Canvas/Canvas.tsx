@@ -150,6 +150,7 @@ function Canvas({
       {gameOver && (
         <EndPopup
           userTime={userTime}
+          gameTheme={gameTheme}
           bestTime={bestTime}
           firestore={firestore}
           playAgain={playAgain}
