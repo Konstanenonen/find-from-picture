@@ -7,6 +7,7 @@ import styles from './App.module.scss';
 import StartMenu from '../StartMenu/StartMenu';
 import Footer from '../Footer/Footer';
 
+//  Firebase config
 const firebaseConfig = {
   apiKey: 'AIzaSyBguB1cnwI-okJrHcYqGZnypeV7eLqBeuw',
   authDomain: 'find-from-picture.firebaseapp.com',
@@ -16,6 +17,7 @@ const firebaseConfig = {
   appId: '1:613746067832:web:ace715b8496fa02d54e08d',
 };
 
+// Initializing Firebase
 const firebaseApp = initializeApp(firebaseConfig);
 const firestore = getFirestore(firebaseApp);
 const storage = getStorage(firebaseApp);
