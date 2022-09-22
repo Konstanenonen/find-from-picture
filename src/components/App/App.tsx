@@ -36,41 +36,34 @@ function App() {
   const [canvasUrl, setCanvasUrl] = useState('');
   const [gameTheme, setGameTheme] = useState('waldo');
 
+  // Fetching images from the firebase
   useEffect(() => {
     getDownloadURL(ref(storage, `${gameTheme}/character1.jpg`))
       .then((url) => {
-        // Or inserted into an <img> element
         setFirstCharacter(url);
       })
       .catch((error) => {
-        // Handle any errors
         console.log(error);
       });
     getDownloadURL(ref(storage, `${gameTheme}/character2.jpg`))
       .then((url) => {
-        // Or inserted into an <img> element
         setSecondCharacter(url);
       })
       .catch((error) => {
-        // Handle any errors
         console.log(error);
       });
     getDownloadURL(ref(storage, `${gameTheme}/character3.jpg`))
       .then((url) => {
-        // Or inserted into an <img> element
         setThirdCharacter(url);
       })
       .catch((error) => {
-        // Handle any errors
         console.log(error);
       });
     getDownloadURL(ref(storage, `${gameTheme}/canvas.jpg`))
       .then((url) => {
-        // Or inserted into an <img> element
         setCanvasUrl(url);
       })
       .catch((error) => {
-        // Handle any errors
         console.log(error);
       });
   }, [gameTheme]);
